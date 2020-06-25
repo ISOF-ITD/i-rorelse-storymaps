@@ -15,7 +15,7 @@ $(window).on('load', function() {
   let story = url.searchParams.get("story");
 
   // First, try reading data from the Google Sheet
-  if (typeof googleDocURL !== 'undefined' && googleDocURL) {
+  if (false && typeof googleDocURL !== 'undefined' && googleDocURL) {
     Tabletop.init({
       key: googleDocURL,
       callback: function(data, tt) {
@@ -144,7 +144,7 @@ $(window).on('load', function() {
           L.marker([lat, lon], {
             icon: L.ExtraMarkers.icon({
               icon: 'fa-number',
-              number: c['Marker'] === 'Plain' ? '' : chapterCount,
+              number: c['Marker'] === 'Plain' ? '' : c['Location'],
               markerColor: c['Marker Color'] || 'blue'
             }),
             opacity: c['Marker'] === 'Hidden' ? 0 : 0.9,
@@ -219,7 +219,7 @@ $(window).on('load', function() {
         .append('<p class="chapter-header">' + c['Chapter'] + '</p>')
         .append(media ? mediaContainer : '')
         .append(media ? source : '')
-        .append('<p class="description">' + c['Description'] + '</p>');
+        .append('<div class="description">' + c['Description'] + '</div>');
 
       $('#contents').append(container);
 
@@ -300,6 +300,8 @@ $(window).on('load', function() {
               overlay = L.tileLayer(c['Overlay'], {opacity: opacity}).addTo(map);
             }
 
+          } else {
+            delete map.options.crs;
           }
 
           if (c['GeoJSON Overlay']) {
@@ -335,7 +337,29 @@ $(window).on('load', function() {
           // Fly to the new marker destination if latitude and longitude exist
           if (c['Latitude'] && c['Longitude']) {
             var zoom = c['Zoom'] ? c['Zoom'] : CHAPTER_ZOOM;
-            map.flyTo([c['Latitude'], c['Longitude']], zoom);
+            map.flyTo([c['Latitude'], c['Longitude']], zoom).once('moveend', function() {
+              // After flyTo(), change projection if needed
+              let url = c['Overlay']
+              if(url.split('/').indexOf('lm_proxy') > -1 && (!(map.options.hasOwnProperty('crs')) || map.options.crs == 'EPSG:3857')){
+                let crs = new L.Proj.CRS(
+                  'EPSG:3006',
+                  '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs',
+                  {
+                    resolutions: [
+                      4096, 2048, 1024, 512, 256, 128,64, 32, 16, 8, 4, 2, 1, 0.5
+                    ],
+                    origin: [-1200000.000000, 8500000.000000 ],
+                    bounds:  L.bounds( [-1200000.000000, 8500000.000000], [4305696.000000, 2994304.000000])
+                  }
+                )
+                map.options.crs = crs;
+                map.panTo([c['Latitude'], c['Longitude']], zoom)
+              }
+              // delete projection property for every map that is not lantmateriet
+              else if (map.options.hasOwnProperty('crs') && url.split('/').indexOf('lm_proxy') == -1){
+                delete map.options.crs;
+              }
+            });
           }
 
           // No need to iterate through the following chapters
