@@ -10,6 +10,10 @@ $(window).on('load', function() {
     scrollPosition = $(this).scrollTop();
   });
 
+  // Stories
+  let url = new URL(window.location.href);
+  let story = url.searchParams.get("story");
+
   // First, try reading data from the Google Sheet
   if (typeof googleDocURL !== 'undefined' && googleDocURL) {
     Tabletop.init({
@@ -24,8 +28,8 @@ $(window).on('load', function() {
   }
   // Else, try csv/Options.csv and csv/Chapters.csv
   else {
-    $.get('csv/Options.csv', function(options) {
-      $.get('csv/Chapters.csv', function(chapters) {
+    $.get(`csv/${story}/Options.csv`, function(options) {
+      $.get(`csv/${story}/Chapters.csv`, function(chapters) {
         initMap(
           $.csv.toObjects(options),
           $.csv.toObjects(chapters),
