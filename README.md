@@ -1,3 +1,11 @@
+# Github pages
+
+push to github page: git subtree push --prefix www origin gh-pages
+
+github page located at: https://isof-itd.github.io/leaflet-storymaps/
+
+---
+
 # Leaflet Storymaps with Google Sheets
 Customize your Leaflet story map with linked Google Sheets template and scrolling narrative.
 Supports images, audio and video embeddings, and Leaflet TileLayer/geojson overlays.
