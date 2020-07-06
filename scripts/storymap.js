@@ -1,3 +1,22 @@
+import L from 'leaflet';
+import Proj from 'proj4leaflet';
+import $ from 'jquery';
+import csv from 'jquery-csv';
+$.csv = csv;
+import { constants } from './constants';
+import './leaflet-providers';
+import './tabletop';
+import 'leaflet-extra-markers';
+
+
+    // Create the Leaflet map with a generic start point
+const map = L.map('map', {
+  center: [0, 0],
+  zoom: 1,
+  scrollWheelZoom: false,
+  zoomControl: false
+});
+
 $(window).on('load', function() {
   var documentSettings = {};
 
@@ -15,18 +34,13 @@ $(window).on('load', function() {
   let story = url.searchParams.get("story");
 
   // First, try reading data from the Google Sheet
-  if (false && typeof googleDocURL !== 'undefined' && googleDocURL) {
-    Tabletop.init({
-      key: googleDocURL,
-      callback: function(data, tt) {
-        initMap(
-          data.Options.elements,
-          data.Chapters.elements
-        )
-      }
-    })
+  if (story == null) {
+    $.get(`csv/Stories.csv`, function(stories) {
+      initStoryList(
+        $.csv.toObjects(stories)
+      )
+    });
   }
-  // Else, try csv/Options.csv and csv/Chapters.csv
   else {
     $.get(`csv/${story}/Options.csv`, function(options) {
       $.get(`csv/${story}/Chapters.csv`, function(chapters) {
@@ -35,7 +49,7 @@ $(window).on('load', function() {
           $.csv.toObjects(chapters),
         )
       }).fail(function(e) { alert('Could not read Chapters.csv') });
-    }).fail(function(e) { alert('Could not read Options.csv') })
+    }).fail(function(e) { alert(`Could not read csv/${story}/Options.csv`) })
   }
 
 
@@ -78,6 +92,20 @@ $(window).on('load', function() {
     L.tileLayer.provider(basemap, {
       maxZoom: 18
     }).addTo(map);
+  }
+
+  function initStoryList(stories) {
+    let $ul = $('<ul>', {class: 'stories'}).append(
+      stories.map(story => 
+        $('<li/>').append($('<a/>', 
+          {
+            href: `/?story=${story['Name']}`
+          })
+          .text(story['Name']))
+      )
+    );
+    console.log(stories)
+    $('#narration #contents').append($ul)
   }
 
   function initMap(options, chapters) {
@@ -131,7 +159,7 @@ $(window).on('load', function() {
     var overlay;  // URL of the overlay for in-focus chapter
     var geoJsonOverlay;
 
-    for (i in chapters) {
+    for (let i in chapters) {
       var c = chapters[i];
 
       if ( !isNaN(parseFloat(c['Latitude'])) && !isNaN(parseFloat(c['Longitude']))) {
@@ -228,7 +256,7 @@ $(window).on('load', function() {
     changeAttribution();
 
     /* Change image container heights */
-    imgContainerHeight = parseInt(getSetting('_imgContainerHeight'));
+    let imgContainerHeight = parseInt(getSetting('_imgContainerHeight'));
     if (imgContainerHeight > 0) {
       $('.img-container').css({
         'height': imgContainerHeight + 'px',
@@ -238,7 +266,7 @@ $(window).on('load', function() {
 
     // For each block (chapter), calculate how many pixels above it
     pixelsAbove[0] = -100;
-    for (i = 1; i < chapters.length; i++) {
+    for (let i = 1; i < chapters.length; i++) {
       pixelsAbove[i] = pixelsAbove[i-1] + $('div#container' + (i-1)).height() + chapterContainerMargin;
     }
     pixelsAbove.push(Number.MAX_VALUE);
@@ -395,7 +423,7 @@ $(window).on('load', function() {
       .appendTo("head");
 
 
-    endPixels = parseInt(getSetting('_pixelsAfterFinalChapter'));
+    const endPixels = parseInt(getSetting('_pixelsAfterFinalChapter'));
     if (endPixels > 100) {
       $('#space-at-the-bottom').css({
         'height': (endPixels / 2) + 'px',
@@ -404,7 +432,7 @@ $(window).on('load', function() {
     }
 
     var bounds = [];
-    for (i in markers) {
+    for (let i in markers) {
       if (markers[i]) {
         markers[i].addTo(map);
         markers[i]['_pixelsAbove'] = pixelsAbove[i];

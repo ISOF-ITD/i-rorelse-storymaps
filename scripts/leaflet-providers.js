@@ -95,7 +95,7 @@
 
 	/**
 	 * Definition of providers.
-	 * see http://leafletjs.com/reference.html#tilelayer for options in the options map.
+	 * see https://leafletjs.com/reference.html#tilelayer for options in the options map.
 	 */
 
 	L.TileLayer.Provider.providers = {
@@ -104,18 +104,18 @@
 			options: {
 				maxZoom: 19,
 				attribution:
-					'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 			},
 			variants: {
 				Mapnik: {},
 				BlackAndWhite: {
-					url: 'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
+					url: 'https://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
 					options: {
 						maxZoom: 18
 					}
 				},
 				DE: {
-					url: 'http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png',
+					url: 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png',
 					options: {
 						maxZoom: 18
 					}
@@ -130,29 +130,29 @@
 				HOT: {
 					url: '//{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
 					options: {
-						attribution: '{attribution.OpenStreetMap}, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+						attribution: '{attribution.OpenStreetMap}, Tiles courtesy of <a href="https://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
 					}
 				}
 			}
 		},
 		OpenSeaMap: {
-			url: 'http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png',
+			url: 'https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png',
 			options: {
-				attribution: 'Map data: &copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors'
+				attribution: 'Map data: &copy; <a href="https://www.openseamap.org">OpenSeaMap</a> contributors'
 			}
 		},
 		OpenTopoMap: {
 			url: '//{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
 			options: {
 				maxZoom: 17,
-				attribution: 'Map data: {attribution.OpenStreetMap}, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+				attribution: 'Map data: {attribution.OpenStreetMap}, <a href="https://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
 			}
 		},
 		Thunderforest: {
 			url: '//{s}.tile.thunderforest.com/{variant}/{z}/{x}/{y}.png',
 			options: {
 				attribution:
-					'&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, {attribution.OpenStreetMap}',
+					'&copy; <a href="https://www.thunderforest.com/">Thunderforest</a>, {attribution.OpenStreetMap}',
 				variant: 'cycle'
 			},
 			variants: {
@@ -181,11 +181,11 @@
 			}
 		},
 		OpenMapSurfer: {
-			url: 'http://korona.geog.uni-heidelberg.de/tiles/{variant}/x={x}&y={y}&z={z}',
+			url: 'https://korona.geog.uni-heidelberg.de/tiles/{variant}/x={x}&y={y}&z={z}',
 			options: {
 				maxZoom: 20,
 				variant: 'roads',
-				attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data {attribution.OpenStreetMap}'
+				attribution: 'Imagery from <a href="https://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data {attribution.OpenStreetMap}'
 			},
 			variants: {
 				Roads: 'roads',
@@ -207,7 +207,7 @@
 			url: '//{s}.tile.openstreetmap.se/hydda/{variant}/{z}/{x}/{y}.png',
 			options: {
 				variant: 'full',
-				attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data {attribution.OpenStreetMap}'
+				attribution: 'Tiles courtesy of <a href="https://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data {attribution.OpenStreetMap}'
 			},
 			variants: {
 				Full: 'full',
@@ -219,7 +219,7 @@
 			url: '//api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
 			options: {
 				attribution:
-					'Imagery from <a href="http://mapbox.com/about/maps/">MapBox</a> &mdash; ' +
+					'Imagery from <a href="https://mapbox.com/about/maps/">MapBox</a> &mdash; ' +
 					'Map data {attribution.OpenStreetMap}',
 				subdomains: 'abcd'
 			}
@@ -228,8 +228,8 @@
 			url: '//stamen-tiles-{s}.a.ssl.fastly.net/{variant}/{z}/{x}/{y}.{ext}',
 			options: {
 				attribution:
-					'Map tiles by <a href="http://stamen.com">Stamen Design</a>, ' +
-					'<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; ' +
+					'Map tiles by <a href="https://stamen.com">Stamen Design</a>, ' +
+					'<a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; ' +
 					'Map data {attribution.OpenStreetMap}',
 				subdomains: 'abcd',
 				minZoom: 0,
@@ -366,10 +366,10 @@
 			}
 		},
 		OpenWeatherMap: {
-			url: 'http://{s}.tile.openweathermap.org/map/{variant}/{z}/{x}/{y}.png',
+			url: 'https://{s}.tile.openweathermap.org/map/{variant}/{z}/{x}/{y}.png',
 			options: {
 				maxZoom: 19,
-				attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
+				attribution: 'Map data &copy; <a href="https://openweathermap.org">OpenWeatherMap</a>',
 				opacity: 0.5
 			},
 			variants: {
@@ -390,7 +390,7 @@
 			/*
 			 * HERE maps, formerly Nokia maps.
 			 * These basemaps are free, but you need an API key. Please sign up at
-			 * http://developer.here.com/getting-started
+			 * https://developer.here.com/getting-started
 			 *
 			 * Note that the base urls contain '.cit' whichs is HERE's
 			 * 'Customer Integration Testing' environment. Please remove for production
@@ -402,7 +402,7 @@
 				'app_id={app_id}&app_code={app_code}&lg={language}',
 			options: {
 				attribution:
-					'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
+					'Map &copy; 1987-2014 <a href="https://developer.here.com">HERE</a>',
 				subdomains: '1234',
 				mapID: 'newest',
 				'app_id': '<insert your app_id here>',
@@ -481,18 +481,18 @@
 			}
 		},
 		FreeMapSK: {
-			url: 'http://t{s}.freemap.sk/T/{z}/{x}/{y}.jpeg',
+			url: 'https://t{s}.freemap.sk/T/{z}/{x}/{y}.jpeg',
 			options: {
 				minZoom: 8,
 				maxZoom: 16,
 				subdomains: '1234',
 				bounds: [[47.204642, 15.996093], [49.830896, 22.576904]],
 				attribution:
-					'{attribution.OpenStreetMap}, vizualization CC-By-SA 2.0 <a href="http://freemap.sk">Freemap.sk</a>'
+					'{attribution.OpenStreetMap}, vizualization CC-By-SA 2.0 <a href="https://freemap.sk">Freemap.sk</a>'
 			}
 		},
 		MtbMap: {
-			url: 'http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png',
+			url: 'https://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png',
 			options: {
 				attribution:
 					'{attribution.OpenStreetMap} &amp; USGS'
@@ -500,9 +500,9 @@
 		},
 		CartoDB: {
 			url: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/{variant}/{z}/{x}/{y}.png',
-      url2: 'http://{s}.basemaps.cartocdn.com/{variant}/{z}/{x}/{y}.png',
+      url2: 'https://{s}.basemaps.cartocdn.com/{variant}/{z}/{x}/{y}.png',
 			options: {
-				attribution: '{attribution.OpenStreetMap} &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+				attribution: '{attribution.OpenStreetMap} &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
 				subdomains: 'abcd',
 				maxZoom: 19,
 				variant: 'light_all'
@@ -517,7 +517,7 @@
 			}
 		},
 		HikeBike: {
-			url: 'http://{s}.tiles.wmflabs.org/{variant}/{z}/{x}/{y}.png',
+			url: 'https://{s}.tiles.wmflabs.org/{variant}/{z}/{x}/{y}.png',
 			options: {
 				maxZoom: 19,
 				attribution: '{attribution.OpenStreetMap}',
@@ -619,7 +619,7 @@
 		},
 		NLS: {
 			// NLS maps are copyright National library of Scotland.
-			// http://maps.nls.uk/projects/api/index.html
+			// https://maps.nls.uk/projects/api/index.html
 			// Please contact NLS for anything other than non-commercial low volume usage
 			//
 			// Map sources: Ordnance Survey 1:1m to 1:63K, 1920s-1940s
@@ -628,7 +628,7 @@
 			//  z12-18 - one inch (1:63360)
 			url: '//nls-{s}.tileserver.com/nls/{z}/{x}/{y}.jpg',
 			options: {
-				attribution: '<a href="http://geo.nls.uk/maps/">National Library of Scotland Historic Maps</a>',
+				attribution: '<a href="https://geo.nls.uk/maps/">National Library of Scotland Historic Maps</a>',
 				bounds: [[49.6, -12], [61.7, 3]],
 				minZoom: 1,
 				maxZoom: 18,

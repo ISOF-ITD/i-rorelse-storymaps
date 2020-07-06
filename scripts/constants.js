@@ -1,4 +1,4 @@
-var constants = {
+export const constants = {
 	// Storymapap Info
   _mapTitle: 'Storymap Title',
   _mapSubtitle: 'Storymap Subtitle',
