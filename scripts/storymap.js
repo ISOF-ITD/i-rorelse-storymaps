@@ -99,7 +99,7 @@ $(window).on('load', function() {
       stories.map(story => 
         $('<li/>').append($('<a/>', 
           {
-            href: `/?story=${story['Name']}`
+            href: `?story=${story['Name']}`
           })
           .text(story['Name']))
       )
