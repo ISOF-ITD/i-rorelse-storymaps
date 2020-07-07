@@ -1,6 +1,22 @@
 # Github pages
 
-push to github page: git subtree push --prefix www origin gh-pages
+compile with gulp for dev, watch for changes: 
+
+```bash
+gulp
+```
+
+compile with gulp for release: 
+
+```bash
+gulp build
+```
+
+push to github page:
+
+```bash
+git subtree push --prefix www origin gh-pages
+```
 
 github page located at: https://isof-itd.github.io/leaflet-storymaps/
 
