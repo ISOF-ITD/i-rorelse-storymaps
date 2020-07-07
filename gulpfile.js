@@ -124,7 +124,8 @@ function bundleApp(isProduction) {
  
   	return appBundler
   		// transform ES6 and JSX to ES5 with babelify
-	  	.transform("babelify", {presets: ["@babel/preset-env", "@babel/preset-react"]})
+		// .transform("babelify", {presets: ["@babel/preset-env", "@babel/preset-react"]})
+	  	.transform("babelify", {presets: ["@babel/preset-env"]})
 		.bundle()
 		// do not interrupt when gulp produces error
 	    .on('error', isProduction ? log : swallowError)
