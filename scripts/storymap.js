@@ -120,7 +120,9 @@ $(window).on('load', function() {
     // build DOM elements
     $('<div/>', {id: 'title'}).append(
       $('<div/>', {id: 'logo'}),
-      $('<div/>', {id: 'header'}),
+      $('<div/>', {id: 'header'}).append(
+        $('<a/>', {href: '?stories', id: 'back', text: '< tillbaka'})
+      ),
     ).appendTo($('body'))
 
     $('<div/>', {id: 'narration'}).append(
@@ -421,7 +423,7 @@ $(window).on('load', function() {
       <div id='space-at-the-bottom'> \
         <a href='#top'>  \
           <i class='fa fa-chevron-up'></i></br> \
-          <small>Top</small>  \
+          <small>Upp</small>  \
         </a> \
       </div> \
     ");
