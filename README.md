@@ -12,13 +12,19 @@ compile with gulp for release:
 gulp build
 ```
 
-push to github page:
+push master brach to all remotes:
+
+```bash
+git remote | xargs -L1 -I R git push R master
+```
+
+push www-directory to github page (gh-pages branch on origin):
 
 ```bash
 git subtree push --prefix www origin gh-pages
 ```
 
-github page located at: https://isof-itd.github.io/leaflet-storymaps/
+The Github page is located at: https://isof-itd.github.io/leaflet-storymaps/
 
 ---
 
