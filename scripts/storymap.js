@@ -33,7 +33,6 @@ $(window).on('load', function() {
   let url = new URL(window.location.href);
   let story = url.searchParams.get("story");
 
-  // First, try reading data from the Google Sheet
   if (story == null) {
     $.get(`csv/Stories.csv`, function(stories) {
       initStoryList(
@@ -95,6 +94,14 @@ $(window).on('load', function() {
   }
 
   function initStoryList(stories) {
+    $('<div/>', {id: 'title', style: 'visibility: visible; position: relative;'}).append(
+      $('<div/>', {id: 'header'}).append(
+        $('<h1/>', {text: 'I rörelse'}),
+        $('<h2/>', {text: 'Berättelser'})
+      )
+    ).appendTo($('body'));
+
+    $('<div/>', {id: 'story-list'}).appendTo($('body'))
     let $ul = $('<ul>', {class: 'stories'}).append(
       stories.map(story => 
         $('<li/>').append($('<a/>', 
@@ -104,11 +111,24 @@ $(window).on('load', function() {
           .text(story['Name']))
       )
     );
-    console.log(stories)
-    $('#narration #contents').append($ul)
+    $('#story-list').append($ul)
+    $('div.loader').css('visibility', 'hidden');
   }
 
   function initMap(options, chapters) {
+
+    // build DOM elements
+    $('<div/>', {id: 'title'}).append(
+      $('<div/>', {id: 'logo'}),
+      $('<div/>', {id: 'header'}),
+    ).appendTo($('body'))
+
+    $('<div/>', {id: 'narration'}).append(
+      $('<div/>', {id: 'contents'}).append(
+        $('<div/>', {id: 'top'})
+      )
+    ).appendTo($('body'))
+
     createDocumentSettings(options);
 
     var chapterContainerMargin = 70;
