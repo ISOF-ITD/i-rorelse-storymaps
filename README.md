@@ -1,4 +1,4 @@
-# Github pages
+# Every day tasks
 
 Compile with gulp for development, watch for changes: 
 
