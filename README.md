@@ -1,30 +1,45 @@
 # Github pages
 
-compile with gulp for dev, watch for changes: 
+Compile with gulp for development, watch for changes: 
 
 ```bash
 gulp
 ```
 
-compile with gulp for release: 
+Add the original repo as *upstream* remote, in order to be able to merge their changes into our code:
+
+```bash
+git remote add upstream git@github.com:HandsOnDataViz/leaflet-storymaps-with-google-sheets.git
+```
+
+Merge change from the original (*upstream*) repo into our code:
+
+```bash
+git fetch upstream
+git merge upstream/master
+```
+
+Compile the code with gulp for release: 
 
 ```bash
 gulp build
 ```
 
-push master brach to all remotes:
+Push the *master* branch to all remotes (except *upstream*):
 
 ```bash
-git remote | xargs -L1 -I R git push R master
+git remote | grep -v upstream | xargs -L1 -I R git push R master
 ```
 
-push www-directory to github page (gh-pages branch on origin):
+Push the **www**-directory to the github page (*gh-pages* branch on *origin*):
 
 ```bash
 git subtree push --prefix www origin gh-pages
 ```
 
 The Github page is located at: https://isof-itd.github.io/leaflet-storymaps/
+
+
 
 ---
 
