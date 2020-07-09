@@ -51,17 +51,17 @@ gulp.task('copy-index-html', function(){
 		.pipe(gulp.dest('./www'));
 });
 
-gulp.task('csv:clean', function(){
-	return del(['./www/csv/**/**.*', './www/csv/**']);
+gulp.task('data:clean', function(){
+	return del(['./www/data/**/**.*', './www/data/**']);
 });
 
-gulp.task('csv:copy', function(){
-	return gulp.src('./csv/**/**.*')
-		.pipe(gulp.dest('./www/csv'));
+gulp.task('data:copy', function(){
+	return gulp.src('./data/**/**.*')
+		.pipe(gulp.dest('./www/data'));
 });
 
 // remove when switching to JSON/Elasticsearch
-gulp.task('csv', gulp.series('csv:clean', 'csv:copy'));
+gulp.task('data', gulp.series('data:clean', 'data:copy'));
 
 gulp.task('geojson:clean', function(){
 	return del('./www/geojson/**.*');
@@ -90,7 +90,7 @@ gulp.task('watch', function (done) {
 	gulp.watch(['./scripts/*.js', './scripts/*/*.js'], gulp.series('scripts'));
 	gulp.watch(['./less/*ss', './less/*/*ss'], gulp.series('less'));
 	gulp.watch(['./index.html'], gulp.series('copy-index-html'));
-	gulp.watch(['./csv/**.*', './csv/*/**.*'], gulp.series('csv'));
+	gulp.watch(['./data/**.*', './data/*/**.*'], gulp.series('data'));
 	gulp.watch(['./geojson/**.*', './geojson/*/**.*'], gulp.series('geojson'));
 	done();
 });
@@ -98,10 +98,10 @@ gulp.task('watch', function (done) {
 // When running 'gulp' on the terminal this task will fire.
 // It will start watching for changes.
 // If there's a change, the tasks defined in 'watch' above will fire.
-gulp.task('default', gulp.series('scripts', 'less', 'copy-index-html', 'csv', 'geojson', 'assets', 'watch'));
+gulp.task('default', gulp.series('scripts', 'less', 'copy-index-html', 'data', 'geojson', 'assets', 'watch'));
 
 // Intended for production build, without watch
-gulp.task('build', gulp.series('deploy', 'less', 'copy-index-html', 'csv', 'geojson', 'assets'));
+gulp.task('build', gulp.series('deploy', 'less', 'copy-index-html', 'data', 'geojson', 'assets'));
  
 // Private Functions
 // ----------------------------------------------------------------------------

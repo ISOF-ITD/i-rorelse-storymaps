@@ -8,7 +8,6 @@ import './leaflet-providers';
 import './tabletop';
 import 'leaflet-extra-markers';
 
-
     // Create the Leaflet map with a generic start point
 const map = L.map('map', {
   center: [0, 0],
@@ -28,29 +27,29 @@ $(window).on('load', function() {
   $('div#contents').scroll(function() {
     scrollPosition = $(this).scrollTop();
   });
+  
+  $.get(`data/Stories.csv`, function(stories_csv) {
+    let stories = $.csv.toObjects(stories_csv);
+    let url = new URL(window.location.href);
+    let story = url.searchParams.get("story");
 
-  // Stories
-  let url = new URL(window.location.href);
-  let story = url.searchParams.get("story");
-
-  if (story == null) {
-    $.get(`csv/Stories.csv`, function(stories) {
-      initStoryList(
-        $.csv.toObjects(stories)
-      )
-    });
-  }
-  else {
-    $.get(`csv/${story}/Options.csv`, function(options) {
-      $.get(`csv/${story}/Chapters.csv`, function(chapters) {
-        initMap(
-          $.csv.toObjects(options),
-          $.csv.toObjects(chapters),
+    if (story == null) {
+        initStoryList(
+          stories
         )
-      }).fail(function(e) { alert('Could not read Chapters.csv') });
-    }).fail(function(e) { alert(`Could not read csv/${story}/Options.csv`) })
-  }
-
+      }
+    else {
+      const story_format = stories.filter(s => s['Name'] == story)[0]['Format']
+      $.get(`data/${story}/Options.${story_format}`, function(options) {
+        $.get(`data/${story}/Chapters.${story_format}`, function(chapters) {
+          initMap(
+            story_format == 'csv' ? $.csv.toObjects(options) : options,
+            story_format == 'csv' ? $.csv.toObjects(chapters) : chapters
+          )
+        }).fail(function(e) { alert(`Could not read data/${story}/Chapters.${story_format}`) });
+      }).fail(function(e) { alert(`Could not read data/${story}/Options.${story_format}`) })
+    }
+  });
 
   /**
   * Reformulates documentSettings as a dictionary, e.g.
@@ -491,7 +490,7 @@ $(window).on('load', function() {
     var attributionHTML = $('.leaflet-control-attribution')[0].innerHTML;
     var credit = 'View <a href="'
       // Show Google Sheet URL if the variable exists and is not empty, otherwise link to Chapters.csv
-      + (typeof googleDocURL !== 'undefined' && googleDocURL ? googleDocURL : './csv/Chapters.csv')
+      + (typeof googleDocURL !== 'undefined' && googleDocURL ? googleDocURL : './data/Chapters.csv')
       + '" target="_blank">data</a>';
     
     var name = getSetting('_authorName');
