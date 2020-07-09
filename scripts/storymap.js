@@ -180,31 +180,35 @@ $(window).on('load', function() {
     var overlay;  // URL of the overlay for in-focus chapter
     var geoJsonOverlay;
 
-    for (let i in chapters) {
-      var c = chapters[i];
+    for (const i in chapters) {
+      const c = chapters[i];
 
-      //  TODO: allow for multiple markers for every chapter
+      if(c['Markers']){
+        for (const marker of c['Markers']) {
 
-      if ( !isNaN(parseFloat(c['Latitude'])) && !isNaN(parseFloat(c['Longitude']))) {
-        var lat = parseFloat(c['Latitude']);
-        var lon = parseFloat(c['Longitude']);
+          if ( !isNaN(parseFloat(marker['Latitude'])) && !isNaN(parseFloat(marker['Longitude']))) {
+            const lat = parseFloat(marker['Latitude']);
+            const lon = parseFloat(marker['Longitude']);
 
-        chapterCount += 1;
+            chapterCount += 1;
 
-        markers.push(
-          L.marker([lat, lon], {
-            icon: L.ExtraMarkers.icon({
-              icon: 'fa-number',
-              number: c['Marker'] === 'Plain' ? '' : c['Location'],
-              markerColor: c['Marker Color'] || 'blue'
-            }),
-            opacity: c['Marker'] === 'Hidden' ? 0 : 0.9,
-            interactive: c['Marker'] === 'Hidden' ? false : true,
+            markers.push(
+              L.marker([lat, lon], {
+                chapter: i,
+                icon: L.ExtraMarkers.icon({
+                  icon: 'fa-number',
+                  number: marker['Style'] === 'Plain' ? '' : marker['Location'],
+                  markerColor: marker['Marker Color'] || 'blue'
+                }),
+                opacity: marker['Style'] === 'Hidden' ? 0 : 0.9,
+                interactive: marker['Style'] === 'Hidden' ? false : true,
+              }
+            ));
+
+          } else {
+            markers.push(null);
           }
-        ));
-
-      } else {
-        markers.push(null);
+        }
       }
 
       // Add chapter container
@@ -469,16 +473,16 @@ $(window).on('load', function() {
     }
 
     var bounds = [];
-    for (let i in markers) {
-      if (markers[i]) {
-        markers[i].addTo(map);
-        markers[i]['_pixelsAbove'] = pixelsAbove[i];
-        markers[i].on('click', function() {
+    for (const marker of markers) {
+      if (marker) {
+        marker.addTo(map);
+        marker['_pixelsAbove'] = pixelsAbove[marker['chapter']];
+        marker.on('click', function() {
           const pixels = parseInt($(this)[0]['_pixelsAbove']) + 5;
           $('div#contents').animate({
             scrollTop: pixels + 'px'});
         });
-        bounds.push(markers[i].getLatLng());
+        bounds.push(marker.getLatLng());
       }
     }
     map.fitBounds(bounds);

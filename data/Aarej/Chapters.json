@@ -6,17 +6,22 @@
     "Media Credit": "Aleppo 1961 (Manfred Nüchter / CC BY-SA)",
     "Media Credit Link": "https://commons.wikimedia.org/wiki/File:Syrien_1961_Aleppo_Blick_von_der_Zitadelle.jpg",
     "Zoom": "5",
-    "Marker": "Location",
-    "Location": "Aleppo",
-    "Latitude": "36.19924",
-    "Longitude": "37.1637253",
     "Found": "",
     "Quality": "",
     "Source": "",
     "Overlay": "",
     "Overlay Transparency": "",
     "GeoJSON Overlay": "geojson/syria-saudi-arabia.geojson",
-    "GeoJSON Feature Properties": "weight:5; fillColor:orange"
+    "GeoJSON Feature Properties": "weight:5; fillColor:orange",
+    "Markers": [
+      {
+        "Location": "Aleppo",
+        "Latitude": "36.19924",
+        "Longitude": "37.1637253",
+        "Style": "Location",
+        "Marker Color": "green"
+      }
+    ]
   },
   {
     "Chapter": "Jag var så lycklig över att jag skulle gifta mig",
@@ -25,10 +30,13 @@
     "Media Credit": "Riyadh 1979 (https://www.flickr.com/photos/dennisharper/6514259875)",
     "Media Credit Link": "https://www.flickr.com/photos/dennisharper/6514259875",
     "Zoom": "5",
-    "Marker": "Hidden",
-    "Location": "Syria - Saudi-Arabia",
-    "Latitude": "28.34662",
-    "Longitude": "42.8430425",
+    "Markers": [
+      {  "Style": "Hidden",
+        "Location": "Syria - Saudi-Arabia",
+        "Latitude": "28.34662",
+        "Longitude": "42.8430425"
+      }
+    ],
     "Found": "",
     "Quality": "",
     "Source": "",
@@ -44,10 +52,14 @@
     "Media Credit": "Norra Hamnkanalen i Göteborg, ca 1985",
     "Media Credit Link": "https://sv.m.wikipedia.org/wiki/Fil:Norra_Hamnkanalen_i_G%C3%B6teborg,_ca_1985.jpg",
     "Zoom": "4",
-    "Marker": "Hidden",
-    "Location": "Middle East - Sweden",
-    "Latitude": "47.3944",
-    "Longitude": "28.5642906",
+    "Markers": [
+      {
+        "Style": "Hidden",
+        "Location": "Middle East - Sweden",
+        "Latitude": "47.3944",
+        "Longitude": "28.5642906"
+      }
+    ],
     "Found": "",
     "Quality": "",
     "Source": "",
@@ -63,10 +75,14 @@
     "Media Credit": "Göteborg på 1980-talet (http://nostalgorama.blogspot.com/2018/12/goteborg-pa-1980-talet.html)",
     "Media Credit Link": "http://nostalgorama.blogspot.com/2018/12/goteborg-pa-1980-talet.html",
     "Zoom": "5",
-    "Marker": "Hidden",
-    "Location": "Sverige",
-    "Latitude": "62.173276",
-    "Longitude": "14.942265",
+    "Markers": [
+      {
+        "Style": "Hidden",
+        "Location": "Sverige",
+        "Latitude": "62.173276",
+        "Longitude": "14.942265"
+      }
+    ],
     "Found": "",
     "Quality": "",
     "Source": "",
@@ -82,10 +98,14 @@
     "Media Credit": "",
     "Media Credit Link": "",
     "Zoom": "12",
-    "Marker": "Plain",
-    "Location": "GBG Centralstation",
-    "Latitude": "57.7091812",
-    "Longitude": "11.9730036",
+    "Markers": [
+    {
+      "Style": "Plain",
+      "Location": "GBG Centralstation",
+      "Latitude": "57.7091812",
+      "Longitude": "11.9730036"
+    }
+    ],
     "Found": "",
     "Quality": "",
     "Source": "",
@@ -101,10 +121,14 @@
     "Media Credit": "",
     "Media Credit Link": "",
     "Zoom": "4",
-    "Marker": "Hidden",
-    "Location": "Sverige - Spanien",
-    "Latitude": "54.2077826",
-    "Longitude": "8.72056801",
+    "Markers": [
+      { 
+        "Style": "Hidden",
+        "Location": "Sverige - Spanien",
+        "Latitude": "54.2077826",
+        "Longitude": "8.72056801"
+      }
+    ],
     "Found": "",
     "Quality": "",
     "Source": "",
@@ -120,16 +144,20 @@
     "Media Credit": "",
     "Media Credit Link": "",
     "Zoom": "4",
-    "Marker": "Hidden",
-    "Location": "Sverige - Syrien",
-    "Latitude": "50.029730",
-    "Longitude": "26.13674029877448",
+    "Markers": [
+      {
+        "Style": "Plain",
+        "Location": "GBG Centralstation",
+        "Latitude": "57.7091812",
+        "Longitude": "11.9730036"
+      }
+    ],
     "Found": "",
     "Quality": "",
     "Source": "",
     "Overlay": "",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "",
-    "GeoJSON Feature Properties": ""
+    "GeoJSON Overlay": "geojson/syria.geojson",
+    "GeoJSON Feature Properties": "weight:5; fillColor:orange"
   }
 ]
