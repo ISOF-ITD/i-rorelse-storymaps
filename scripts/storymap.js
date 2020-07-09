@@ -183,6 +183,8 @@ $(window).on('load', function() {
     for (let i in chapters) {
       var c = chapters[i];
 
+      //  TODO: allow for multiple markers for every chapter
+
       if ( !isNaN(parseFloat(c['Latitude'])) && !isNaN(parseFloat(c['Longitude']))) {
         var lat = parseFloat(c['Latitude']);
         var lon = parseFloat(c['Longitude']);
@@ -361,9 +363,14 @@ $(window).on('load', function() {
             delete map.options.crs;
           }
 
+          let flyToBounds = false;
+
           if (c['GeoJSON Overlay']) {
             $.getJSON(c['GeoJSON Overlay'], function(geojson) {
-
+              flyToBounds = true;
+              // todo: make this 
+              let chapterBounds = L.geoJson(geojson).getBounds()
+              map.flyToBounds(chapterBounds)
               // Parse properties string into a JS object
               var props = {};
 
@@ -392,7 +399,7 @@ $(window).on('load', function() {
           }
 
           // Fly to the new marker destination if latitude and longitude exist
-          if (c['Latitude'] && c['Longitude']) {
+          if (!flyToBounds && c['Latitude'] && c['Longitude']) {
             var zoom = c['Zoom'] ? c['Zoom'] : CHAPTER_ZOOM;
             map.flyTo([c['Latitude'], c['Longitude']], zoom).once('moveend', function() {
               // After flyTo(), change projection if needed
@@ -410,7 +417,8 @@ $(window).on('load', function() {
                   }
                 )
                 map.options.crs = crs;
-                map.panTo([c['Latitude'], c['Longitude']], zoom)
+                // map.panTo([c['Latitude'], c['Longitude']], zoom)
+                map.fitBounds(chapterBounds)
               }
               // delete projection property for every map that is not lantmateriet
               else if (map.options.hasOwnProperty('crs') && url.split('/').indexOf('lm_proxy') == -1){
@@ -466,7 +474,7 @@ $(window).on('load', function() {
         markers[i].addTo(map);
         markers[i]['_pixelsAbove'] = pixelsAbove[i];
         markers[i].on('click', function() {
-          var pixels = parseInt($(this)[0]['_pixelsAbove']) + 5;
+          const pixels = parseInt($(this)[0]['_pixelsAbove']) + 5;
           $('div#contents').animate({
             scrollTop: pixels + 'px'});
         });
