@@ -1,8 +1,6 @@
 import L from 'leaflet';
 import Proj from 'proj4leaflet';
 import $ from 'jquery';
-import csv from 'jquery-csv';
-$.csv = csv;
 import { constants } from './constants';
 import './leaflet-providers';
 import './tabletop';
@@ -28,8 +26,7 @@ $(window).on('load', function() {
     scrollPosition = $(this).scrollTop();
   });
   
-  $.get(`data/Stories.csv`, function(stories_csv) {
-    let stories = $.csv.toObjects(stories_csv);
+  $.get(`data/Stories.json`, function(stories) {
     let url = new URL(window.location.href);
     let story = url.searchParams.get("story");
 
@@ -39,15 +36,14 @@ $(window).on('load', function() {
         )
       }
     else {
-      const story_format = stories.filter(s => s['Name'] == story)[0]['Format']
-      $.get(`data/${story}/Options.${story_format}`, function(options) {
-        $.get(`data/${story}/Chapters.${story_format}`, function(chapters) {
+      $.get(`data/${story}/Options.json`, function(options) {
+        $.get(`data/${story}/Chapters.json`, function(chapters) {
           initMap(
-            story_format == 'csv' ? $.csv.toObjects(options) : options,
-            story_format == 'csv' ? $.csv.toObjects(chapters) : chapters
+            options,
+            chapters
           )
-        }).fail(function(e) { alert(`Could not read data/${story}/Chapters.${story_format}`) });
-      }).fail(function(e) { alert(`Could not read data/${story}/Options.${story_format}`) })
+        }).fail(function(e) { alert(`Could not read data/${story}/Chapters.json`) });
+      }).fail(function(e) { alert(`Could not read data/${story}/Options.json`) })
     }
   });
 
@@ -501,8 +497,8 @@ $(window).on('load', function() {
   function changeAttribution() {
     var attributionHTML = $('.leaflet-control-attribution')[0].innerHTML;
     var credit = 'View <a href="'
-      // Show Google Sheet URL if the variable exists and is not empty, otherwise link to Chapters.csv
-      + (typeof googleDocURL !== 'undefined' && googleDocURL ? googleDocURL : './data/Chapters.csv')
+      // Show Google Sheet URL if the variable exists and is not empty, otherwise link to Chapters.json
+      + (typeof googleDocURL !== 'undefined' && googleDocURL ? googleDocURL : './data/Chapters.json')
       + '" target="_blank">data</a>';
     
     var name = getSetting('_authorName');
