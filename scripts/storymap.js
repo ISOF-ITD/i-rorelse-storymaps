@@ -6,7 +6,7 @@ import './leaflet-providers';
 import './tabletop';
 import 'leaflet-extra-markers';
 
-    // Create the Leaflet map with a generic start point
+// Create the Leaflet map with a generic start point
 const map = L.map('map', {
   center: [0, 0],
   zoom: 1,
@@ -166,6 +166,29 @@ $(window).on('load', function() {
             markers[k]._icon.className += ' marker-active';
           }
         }
+      }
+    }
+
+    let changeProjection = function(map, c) {
+      let url = c['Overlay']
+      if(url.split('/').indexOf('lm_proxy') > -1 && (!(map.options.hasOwnProperty('crs')) || map.options.crs == 'EPSG:3857')){
+        let crs = new L.Proj.CRS(
+          'EPSG:3006',
+          '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs',
+          {
+            resolutions: [
+              4096, 2048, 1024, 512, 256, 128,64, 32, 16, 8, 4, 2, 1, 0.5
+            ],
+            origin: [-1200000.000000, 8500000.000000 ],
+            bounds:  L.bounds( [-1200000.000000, 8500000.000000], [4305696.000000, 2994304.000000])
+          }
+        )
+        map.options.crs = crs;
+        map.fitBounds(chapterBounds)
+      }
+      // delete projection property for every map that is not lantmateriet
+      else if (map.options.hasOwnProperty('crs') && url.split('/').indexOf('lm_proxy') == -1){
+        delete map.options.crs;
       }
     }
 
@@ -369,8 +392,10 @@ $(window).on('load', function() {
             $.getJSON(c['GeoJSON Overlay'], function(geojson) {
               flyToBounds = true;
               // todo: make this 
-              let chapterBounds = L.geoJson(geojson).getBounds()
-              map.flyToBounds(chapterBounds)
+              const geoJsonBounds = L.geoJson(geojson).getBounds()
+              const markerBounds = c['Markers'].map( marker => [marker['Latitude'], marker['Longitude']])
+
+              map.flyToBounds([geoJsonBounds, markerBounds]).once('moveend', changeProjection(map, c))
               // Parse properties string into a JS object
               var props = {};
 
@@ -396,35 +421,16 @@ $(window).on('load', function() {
                 }
               }).addTo(map);
             });
-          }
-
-          // Fly to the new marker destination if latitude and longitude exist
-          if (!flyToBounds && c['Latitude'] && c['Longitude']) {
-            var zoom = c['Zoom'] ? c['Zoom'] : CHAPTER_ZOOM;
-            map.flyTo([c['Latitude'], c['Longitude']], zoom).once('moveend', function() {
-              // After flyTo(), change projection if needed
-              let url = c['Overlay']
-              if(url.split('/').indexOf('lm_proxy') > -1 && (!(map.options.hasOwnProperty('crs')) || map.options.crs == 'EPSG:3857')){
-                let crs = new L.Proj.CRS(
-                  'EPSG:3006',
-                  '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs',
-                  {
-                    resolutions: [
-                      4096, 2048, 1024, 512, 256, 128,64, 32, 16, 8, 4, 2, 1, 0.5
-                    ],
-                    origin: [-1200000.000000, 8500000.000000 ],
-                    bounds:  L.bounds( [-1200000.000000, 8500000.000000], [4305696.000000, 2994304.000000])
-                  }
-                )
-                map.options.crs = crs;
-                // map.panTo([c['Latitude'], c['Longitude']], zoom)
-                map.fitBounds(chapterBounds)
-              }
-              // delete projection property for every map that is not lantmateriet
-              else if (map.options.hasOwnProperty('crs') && url.split('/').indexOf('lm_proxy') == -1){
-                delete map.options.crs;
-              }
-            });
+          } else if (c['Markers'].length > 1) {
+            // multiple markers become a bound
+            map.flyToBounds(
+              c['Markers'].map(marker => [marker['Latitude'], marker['Longitude']])
+            ).once('moveend', changeProjection(map, c))
+          } else {
+            // Fly to the single marker destination, use zoom level from chapter zoom in JSON
+            let zoom = c['Zoom'] ? c['Zoom'] : CHAPTER_ZOOM;
+            let marker = c['Markers'][0]
+            map.flyTo([marker['Latitude'], marker['Longitude']], zoom).once('moveend', changeProjection(map, c));
           }
 
           // No need to iterate through the following chapters
