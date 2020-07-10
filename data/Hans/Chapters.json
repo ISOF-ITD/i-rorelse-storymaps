@@ -9,7 +9,7 @@
     "Markers": [
       {
         "Style": "Plain",
-        "Location": "Berlin",
+        "Location": "Hochschule für die Wissenschaft des Judentums",
         "Latitude": "52.523986",
         "Longitude": "13.392157"
       }
@@ -54,10 +54,10 @@
     "Zoom": "5",
     "Markers": [
       {
-        "Style": "Hidden",
-        "Location": "B - Sverige",
-        "Latitude": "60.76",
-        "Longitude": "14.9"
+        "Style": "Plain",
+        "Location": "Berlin",
+        "Latitude": "52.523986",
+        "Longitude": "13.392157"
       }
     ],
     "Found": "",
@@ -65,7 +65,7 @@
     "Source": "",
     "Overlay": "",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/sweden.geojson",
+    "GeoJSON Overlay": "geojson/poland-sweden-uk.geojson",
     "GeoJSON Feature Properties": "weight:5; fillColor:orange"
   },
   {
@@ -78,9 +78,9 @@
     "Markers": [
       {
         "Style": "Hidden",
-        "Location": "B - Sverige",
-        "Latitude": "60.76",
-        "Longitude": "14.9"
+        "Location": "Berlin",
+        "Latitude": "52.523986",
+        "Longitude": "13.392157"
       }
     ],
     "Found": "",
@@ -144,20 +144,13 @@
     "Media Credit Link": "",
     "Description": "<p>”Sverige var väldigt annorlunda vid tiden för andra världskriget och jag har upplevt förändringen av det svenska samhället. Högtidsdagarna hade en starkt kristen prägel, de var precis som nationella helgdagar. Den kyrkliga atmosfären var en helt annan, den var dominerande. I skolan hade barnen kristendomskunskap och de judiska barnen fick befria sig från den undervisningen. Den finns inte längre, nu är det religionskunskap. Idag går mina prästkollegor och jag till skolan för att tala om religion, var och en om sin religion. På den tiden jag kom till Sverige hade detta varit helt omöjligt. Ett samarbete mellan judar och kyrkan hade vid denna tiden varit otänkbart!”</p>",
     "Zoom": "1",
-    "Markers": [
-      {
-        "Style": "Hidden",
-        "Location": "Sverige",
-        "Latitude": "62.3875",
-        "Longitude": "16.325556"
-      }
-    ],
+    "Markers": [],
     "Found": "",
     "Quality": "",
     "Source": "",
     "Overlay": "https://frigg.isof.se/sagendatabas/api/lm_proxy/{z}/{y}/{x}.png",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "",
+    "GeoJSON Overlay": "geojson/sweden.geojson",
     "GeoJSON Feature Properties": ""
   },
   {
@@ -167,20 +160,13 @@
     "Media Credit Link": "",
     "Description": "<p>”Jag har fått barn i Sverige, varit gift tre gånger och blivit änkeman tre gånger.</p><p></p><p>Jag har slutat vara offer. Jag lever i Sverige i dagens läge och jag är inget offer. Offer är mina föräldrar och släktingar, alla judar som förintades. Men den tiden har levt med mig genom hela livet.</p><p></p><p>Kriget förändrade mitt liv. Om situationen inte varit som den är i dag då hade jag inte suttit här i Göteborg, utan i Berlin, som en välsituerad, pensionerad liberal rabbin. Med största sannolikhet. Och inte varit växtdoktor över huvud taget. Sverige var visserligen underbart och ett underbart land när jag ser tillbaka på tiden som har varit. Jag kom ju ändå till en demokrati som var fantastisk. Men jag hade mina rötter och mitt hjärta på ett helt annat ställe.”</p>",
     "Zoom": "1",
-    "Markers": [
-      {
-        "Style": "Plain",
-        "Location": "Sverige",
-        "Latitude": "57.707233",
-        "Longitude": "11.967017"
-      }
-    ],
+    "Markers": [],
     "Found": "",
     "Quality": "",
     "Source": "",
     "Overlay": "https://frigg.isof.se/sagendatabas/api/lm_proxy/{z}/{y}/{x}.png",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "",
+    "GeoJSON Overlay": "geojson/sweden.geojson",
     "GeoJSON Feature Properties": ""
   }
 ]
