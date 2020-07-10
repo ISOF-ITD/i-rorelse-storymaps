@@ -223,9 +223,6 @@ $(window).on('load', function() {
                 interactive: marker['Style'] === 'Hidden' ? false : true,
               }
             ));
-
-          } else {
-            markers.push(null);
           }
         }
       }
@@ -489,11 +486,12 @@ $(window).on('load', function() {
     for (const marker of markers) {
       if (marker) {
         marker.addTo(map);
-        marker['_pixelsAbove'] = pixelsAbove[marker['chapter']];
-        marker.on('click', function() {
-          const pixels = parseInt($(this)[0]['_pixelsAbove']) + 5;
+        marker['_pixelsAbove'] = pixelsAbove[marker['options']['chapter']];
+        marker.on('click', function () {
+          const pixels = parseInt(this['_pixelsAbove']) + 5;
           $('div#contents').animate({
-            scrollTop: pixels + 'px'});
+            scrollTop: pixels + 'px'
+          });
         });
         bounds.push(marker.getLatLng());
       }
