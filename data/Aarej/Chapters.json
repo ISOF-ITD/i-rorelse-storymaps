@@ -5,7 +5,7 @@
     "Media Link": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Syrien_1961_Aleppo_Blick_von_der_Zitadelle.jpg",
     "Media Credit": "Aleppo 1961 (Manfred Nüchter / CC BY-SA)",
     "Media Credit Link": "https://commons.wikimedia.org/wiki/File:Syrien_1961_Aleppo_Blick_von_der_Zitadelle.jpg",
-    "Zoom": "5",
+    "Zoom": "",
     "Found": "",
     "Quality": "",
     "Source": "",
@@ -29,14 +29,8 @@
     "Media Link": "https://live.staticflickr.com/7003/6514259875_9441cb33c6_b.jpg",
     "Media Credit": "Riyadh 1979 (https://www.flickr.com/photos/dennisharper/6514259875)",
     "Media Credit Link": "https://www.flickr.com/photos/dennisharper/6514259875",
-    "Zoom": "5",
-    "Markers": [
-      {  "Style": "Hidden",
-        "Location": "Syria - Saudi-Arabia",
-        "Latitude": "28.34662",
-        "Longitude": "42.8430425"
-      }
-    ],
+    "Zoom": "",
+    "Markers": [],
     "Found": "",
     "Quality": "",
     "Source": "",
@@ -51,15 +45,8 @@
     "Media Link": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Norra_Hamnkanalen_i_G%C3%B6teborg%2C_ca_1985.jpg/320px-Norra_Hamnkanalen_i_G%C3%B6teborg%2C_ca_1985.jpg",
     "Media Credit": "Norra Hamnkanalen i Göteborg, ca 1985",
     "Media Credit Link": "https://sv.m.wikipedia.org/wiki/Fil:Norra_Hamnkanalen_i_G%C3%B6teborg,_ca_1985.jpg",
-    "Zoom": "4",
-    "Markers": [
-      {
-        "Style": "Hidden",
-        "Location": "Middle East - Sweden",
-        "Latitude": "47.3944",
-        "Longitude": "28.5642906"
-      }
-    ],
+    "Zoom": "",
+    "Markers": [],
     "Found": "",
     "Quality": "",
     "Source": "",
@@ -74,15 +61,8 @@
     "Media Link": "https://1.bp.blogspot.com/-dlSvcghT26U/XBTXB0PWzNI/AAAAAAAKULc/DZo-2AejnjUfFnCtAwG0yc6mtay61pkgwCLcBGAs/s640/Foto.%2BFotograf%2Bok%25C3%25A4nd.%2BKorsv%25C3%25A4gen.%2B80-tal.jpg",
     "Media Credit": "Göteborg på 1980-talet (http://nostalgorama.blogspot.com/2018/12/goteborg-pa-1980-talet.html)",
     "Media Credit Link": "http://nostalgorama.blogspot.com/2018/12/goteborg-pa-1980-talet.html",
-    "Zoom": "5",
-    "Markers": [
-      {
-        "Style": "Hidden",
-        "Location": "Sverige",
-        "Latitude": "62.173276",
-        "Longitude": "14.942265"
-      }
-    ],
+    "Zoom": "",
+    "Markers": [],
     "Found": "",
     "Quality": "",
     "Source": "",
@@ -120,15 +100,8 @@
     "Media Link": "",
     "Media Credit": "",
     "Media Credit Link": "",
-    "Zoom": "4",
-    "Markers": [
-      { 
-        "Style": "Hidden",
-        "Location": "Sverige - Spanien",
-        "Latitude": "54.2077826",
-        "Longitude": "8.72056801"
-      }
-    ],
+    "Zoom": "",
+    "Markers": [],
     "Found": "",
     "Quality": "",
     "Source": "",
@@ -143,7 +116,7 @@
     "Media Link": "",
     "Media Credit": "",
     "Media Credit Link": "",
-    "Zoom": "4",
+    "Zoom": "",
     "Markers": [
       {
         "Style": "Plain",
