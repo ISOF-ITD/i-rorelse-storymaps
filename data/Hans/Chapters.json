@@ -28,7 +28,7 @@
     "Media Credit": "Holocaust Survivor Testimonies: Kristallnacht in a Small German Town",
     "Media Credit Link": "https://commons.wikimedia.org/wiki/File:Jews_forced_to_march_with_star_Kristallnacht_(cropped).jpg#/media/File:Jews_forced_to_march_with_star_Kristallnacht_(cropped).jpg",
     "Description": "<p>”Jag var juniormästare i brottning från 1933 till 1936 och när jag 1935 skulle gå på arenan i Berlin så sjöng man ’Wenn’s Judenblut vom Messer spritzt’. Varje gång jag gick på mattan var det sådant som hände. Den tränaren vi hade, han var inte jude, och när jag inte ville gå på mattan så sa han: ’Du ska ta mig fan gå på mattan! Vi ska visa dem!’.</p><p></p><p>Jag minns den 9 november 1938, det som senare kom att kallas Kristallnatten. Jag var då under trädgårdsutbildning. Då var jag på ett omskolningsläger som lärare för dem som skulle bli jordbrukare i Israel så småningom, trots att jag var ganska ung. På den gård där jag var väcktes vi mitt i natten av SS-armén, fulla och galna. De drog upp oss mitt i natten och sköt ihjäl en kille. Jag åkte till Berlin och skulle rapportera detta. Där var kaos. När jag kom till järnvägsstationen Westbahnhof så var den omringad av SS. Men eftersom jag hade stövlar och grön lodenkostym så betraktades jag som en av dem. Ingen märkte att jag hade hakkorset på rockslaget. Och det innebar att jag slapp undan. Men det var en ren tillfällighet. Jag kom undan, men alla de andra åkte in. Eller försvann. Vart de försvann vet jag inte riktigt. Det gick på nolltid.”</p>",
-    "Zoom": "7",
+    "Zoom": "",
     "Markers": [
       {
         "Style": "Hidden",
@@ -42,8 +42,8 @@
     "Source": "",
     "Overlay": "https://mapwarper.net/maps/tile/44844/{z}/{x}/{y}.png ",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "",
-    "GeoJSON Feature Properties": ""
+    "GeoJSON Overlay": "geojson/germany-poland.geojson",
+    "GeoJSON Feature Properties": "weight:0; fillColor:none"
   },
   {
     "Chapter": "Jag ville inte lämna min mamma",
