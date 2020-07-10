@@ -395,7 +395,12 @@ $(window).on('load', function() {
               const geoJsonBounds = L.geoJson(geojson).getBounds()
               const markerBounds = c['Markers'].map( marker => [marker['Latitude'], marker['Longitude']])
 
-              map.flyToBounds([geoJsonBounds, markerBounds]).once('moveend', changeProjection(map, c))
+              map.flyToBounds(
+                [geoJsonBounds, markerBounds]
+              ).on('moveend', function () {
+                changeProjection(map, c)
+              });
+
               // Parse properties string into a JS object
               var props = {};
 
@@ -425,12 +430,18 @@ $(window).on('load', function() {
             // multiple markers become a bound
             map.flyToBounds(
               c['Markers'].map(marker => [marker['Latitude'], marker['Longitude']])
-            ).once('moveend', changeProjection(map, c))
+            ).on('moveend', function () {
+              changeProjection(map, c)
+            });
           } else {
             // Fly to the single marker destination, use zoom level from chapter zoom in JSON
             let zoom = c['Zoom'] ? c['Zoom'] : CHAPTER_ZOOM;
             let marker = c['Markers'][0]
-            map.flyTo([marker['Latitude'], marker['Longitude']], zoom).once('moveend', changeProjection(map, c));
+            map.flyTo(
+              [marker['Latitude'], marker['Longitude']], zoom
+            ).on('moveend', function () {
+              changeProjection(map, c)
+            });
           }
 
           // No need to iterate through the following chapters
