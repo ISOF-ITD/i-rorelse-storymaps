@@ -3,7 +3,6 @@ import Proj from 'proj4leaflet';
 import $ from 'jquery';
 import { constants } from './constants';
 import './leaflet-providers';
-import './tabletop';
 import 'leaflet-extra-markers';
 
 // Create the Leaflet map with a generic start point
