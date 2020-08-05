@@ -6,7 +6,7 @@ Compile with gulp for development, watch for changes:
 gulp
 ```
 
-Add the original repo as *upstream* remote, in order to be able to merge their changes into our code:
+(only once:) Add the original repo as *upstream* remote, in order to be able to merge their changes into our code:
 
 ```bash
 git remote add upstream git@github.com:HandsOnDataViz/leaflet-storymaps-with-google-sheets.git
@@ -37,7 +37,7 @@ Push the **www**-directory to the github page (*gh-pages* branch on *origin*):
 git subtree push --prefix www origin gh-pages
 ```
 
-The Github page is located at: https://isof-itd.github.io/leaflet-storymaps/
+The Github page is located at: https://isof-itd.github.io/i-rorelse-storymaps/
 
 
 
