@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/ISOF-ITD/leaflet-storymaps#readme",
   "devDependencies": {
-    "@babel/core": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
-    "@fortawesome/fontawesome-free": "^5.13.1",
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "babelify": "^10.0.0",
     "browserify": "^16.5.1",
     "del": "^5.1.0",
