@@ -183,7 +183,6 @@ $(window).on('load', function() {
           }
         )
         map.options.crs = crs;
-        map.fitBounds(chapterBounds)
       }
       // delete projection property for every map that is not lantmateriet
       else if (map.options.hasOwnProperty('crs') && url.split('/').indexOf('lm_proxy') == -1){
@@ -382,17 +381,13 @@ $(window).on('load', function() {
             delete map.options.crs;
           }
 
-          let flyToBounds = false;
-
           if (c['GeoJSON Overlay']) {
             $.getJSON(c['GeoJSON Overlay'], function(geojson) {
-              flyToBounds = true;
-              // todo: make this 
               const geoJsonBounds = L.geoJson(geojson).getBounds()
               const markerBounds = c['Markers'].map( marker => [marker['Latitude'], marker['Longitude']])
-
+              const bounds = [geoJsonBounds, markerBounds]
               map.flyToBounds(
-                [geoJsonBounds, markerBounds]
+                bounds
               ).on('moveend', function () {
                 changeProjection(map, c)
               });
@@ -424,8 +419,9 @@ $(window).on('load', function() {
             });
           } else if (c['Markers'].length > 1) {
             // multiple markers become a bound
+            const bounds = c['Markers'].map(marker => [marker['Latitude'], marker['Longitude']])
             map.flyToBounds(
-              c['Markers'].map(marker => [marker['Latitude'], marker['Longitude']])
+              bounds
             ).on('moveend', function () {
               changeProjection(map, c)
             });
@@ -433,8 +429,9 @@ $(window).on('load', function() {
             // Fly to the single marker destination, use zoom level from chapter zoom in JSON
             let zoom = c['Zoom'] ? c['Zoom'] : CHAPTER_ZOOM;
             let marker = c['Markers'][0]
+            const bounds = [marker['Latitude'], marker['Longitude']]
             map.flyTo(
-              [marker['Latitude'], marker['Longitude']], zoom
+              bounds, zoom
             ).on('moveend', function () {
               changeProjection(map, c)
             });
