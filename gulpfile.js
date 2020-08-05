@@ -16,6 +16,7 @@ var buffer = require('vinyl-buffer');
 var less = require('gulp-less');
 var minifyCSS = require('gulp-csso');
 var htmlmin = require('gulp-htmlmin');
+var replace = require('gulp-replace')
 var path = require('path');
 var gulpif = require('gulp-if');
 var del = require('del');
@@ -129,7 +130,8 @@ function bundleApp(isProduction) {
 		.bundle()
 		// do not interrupt when gulp produces error
 	    .on('error', isProduction ? log : swallowError)
-	    .pipe(source('app.js'))
+		.pipe(source('app.js'))
+		.pipe(gulpif(isProduction,replace('data/', 'http://frigg-test.sprakochfolkminnen.se/static/js-apps/i-rorelse-storymaps/data/')))
     	.pipe(buffer())
         .pipe(gulpif(isProduction, uglify()))
 	    .pipe(gulp.dest('./www/js/'));
