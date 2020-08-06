@@ -42,7 +42,7 @@
     "Source": "",
     "Overlay": "https://mapwarper.net/maps/tile/44844/{z}/{x}/{y}.png ",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/germany-poland.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/germany-poland.geojson",
     "GeoJSON Feature Properties": "weight:0; fillColor:none"
   },
   {
@@ -65,7 +65,7 @@
     "Source": "",
     "Overlay": "",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/poland-sweden-uk.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/poland-sweden-uk.geojson",
     "GeoJSON Feature Properties": "weight:5; fillColor:orange"
   },
   {
@@ -88,7 +88,7 @@
     "Source": "",
     "Overlay": "",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/sweden.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/sweden.geojson",
     "GeoJSON Feature Properties": "weight:5; fillColor:orange"
   },
   {
@@ -150,7 +150,7 @@
     "Source": "",
     "Overlay": "https://frigg.isof.se/sagendatabas/api/lm_proxy/{z}/{y}/{x}.png",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/sweden.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/sweden.geojson",
     "GeoJSON Feature Properties": ""
   },
   {
@@ -166,7 +166,7 @@
     "Source": "",
     "Overlay": "https://frigg.isof.se/sagendatabas/api/lm_proxy/{z}/{y}/{x}.png",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/sweden.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/sweden.geojson",
     "GeoJSON Feature Properties": ""
   }
 ]

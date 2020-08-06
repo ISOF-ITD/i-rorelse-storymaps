@@ -11,7 +11,7 @@
     "Source": "",
     "Overlay": "",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/syria-saudi-arabia.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/syria-saudi-arabia.geojson",
     "GeoJSON Feature Properties": "weight:5; fillColor:orange",
     "Markers": [
       {
@@ -36,7 +36,7 @@
     "Source": "",
     "Overlay": "",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/saudi-arabia.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/saudi-arabia.geojson",
     "GeoJSON Feature Properties": "weight:5; fillColor:orange"
   },
   {
@@ -52,7 +52,7 @@
     "Source": "",
     "Overlay": "",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/saudi-arabia-sweden.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/saudi-arabia-sweden.geojson",
     "GeoJSON Feature Properties": "weight:5; fillColor:orange"
   },
   {
@@ -68,7 +68,7 @@
     "Source": "",
     "Overlay": "",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/sweden.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/sweden.geojson",
     "GeoJSON Feature Properties": "weight:5; fillColor:orange"
   },
   {
@@ -107,7 +107,7 @@
     "Source": "",
     "Overlay": "",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/spain-sweden.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/spain-sweden.geojson",
     "GeoJSON Feature Properties": "weight:5; fillColor:orange"
   },
   {
@@ -130,7 +130,7 @@
     "Source": "",
     "Overlay": "",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/syria.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/syria.geojson",
     "GeoJSON Feature Properties": "weight:5; fillColor:orange"
   }
 ]

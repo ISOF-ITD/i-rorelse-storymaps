@@ -19,7 +19,7 @@
     "Source": "",
     "Overlay": "",
     "Overlay Transparency": "",
-    "GeoJSON Overlay": "geojson/hartford-post-1897.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/hartford-post-1897.geojson",
     "GeoJSON Feature Properties": "weight:5; fillColor:orange"
   },
   {
@@ -65,7 +65,7 @@
     "Source": "Google",
     "Overlay": "https://mapwarper.net/maps/tile/14781/{z}/{x}/{y}.png",
     "Overlay Transparency": "0.7",
-    "GeoJSON Overlay": "geojson/hartford-post-1897.geojson",
+    "GeoJSON Overlay": "https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/hartford-post-1897.geojson",
     "GeoJSON Feature Properties": "color:red;weight:20"
   },
   {
