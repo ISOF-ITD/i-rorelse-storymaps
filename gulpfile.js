@@ -131,7 +131,7 @@ function bundleApp(isProduction) {
 		// do not interrupt when gulp produces error
 	    .on('error', isProduction ? log : swallowError)
 		.pipe(source('app.js'))
-		.pipe(gulpif(isProduction,replace('data/', 'https://frigg-test.sprakochfolkminnen.se/static/js-apps/i-rorelse-storymaps/data/')))
+		.pipe(gulpif(isProduction,replace('data/', 'https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/data/')))
     	.pipe(buffer())
         .pipe(gulpif(isProduction, uglify()))
 	    .pipe(gulp.dest('./www/js/'));
