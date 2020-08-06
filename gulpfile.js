@@ -58,6 +58,7 @@ gulp.task('data:clean', function(){
 
 gulp.task('data:copy', function(){
 	return gulp.src('./data/**/**.*')
+		.pipe(gulpif(production, replace('geojson/', 'https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/geojson/')))
 		.pipe(gulp.dest('./www/data'));
 });
 
