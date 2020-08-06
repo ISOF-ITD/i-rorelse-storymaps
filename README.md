@@ -3,7 +3,7 @@
 Compile with gulp for development, watch for changes: 
 
 ```bash
-gulp
+sed -i 's/production = true/production = false/' gulpfile.js && gulp
 ```
 
 (only once:) Add the original repo as *upstream* remote, in order to be able to merge their changes into our code:
@@ -22,7 +22,7 @@ git merge upstream/master
 Compile the code with gulp for release: 
 
 ```bash
-gulp build
+sed -i 's/production = false/production = true/' gulpfile.js && gulp build && git add www && git commit -m 'fresh compile'
 ```
 
 Push the *master* branch to all remotes (except *upstream*):
