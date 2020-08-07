@@ -168,28 +168,6 @@ $(window).on('load', function() {
       }
     }
 
-    let changeProjection = function(map, c) {
-      let url = c['Overlay']
-      if(url.split('/').indexOf('lm_proxy') > -1 && (!(map.options.hasOwnProperty('crs')) || map.options.crs == 'EPSG:3857')){
-        let crs = new L.Proj.CRS(
-          'EPSG:3006',
-          '+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs',
-          {
-            resolutions: [
-              4096, 2048, 1024, 512, 256, 128,64, 32, 16, 8, 4, 2, 1, 0.5
-            ],
-            origin: [-1200000.000000, 8500000.000000 ],
-            bounds:  L.bounds( [-1200000.000000, 8500000.000000], [4305696.000000, 2994304.000000])
-          }
-        )
-        map.options.crs = crs;
-      }
-      // delete projection property for every map that is not lantmateriet
-      else if (map.options.hasOwnProperty('crs') && url.split('/').indexOf('lm_proxy') == -1){
-        delete map.options.crs;
-      }
-    }
-
     var pixelsAbove = [];
     var chapterCount = 0;
 
@@ -388,9 +366,7 @@ $(window).on('load', function() {
               const bounds = [geoJsonBounds, markerBounds]
               map.flyToBounds(
                 bounds
-              ).on('moveend', function () {
-                changeProjection(map, c)
-              });
+              );
 
               // Parse properties string into a JS object
               var props = {};
@@ -422,9 +398,7 @@ $(window).on('load', function() {
             const bounds = c['Markers'].map(marker => [marker['Latitude'], marker['Longitude']])
             map.flyToBounds(
               bounds
-            ).on('moveend', function () {
-              changeProjection(map, c)
-            });
+            );
           } else {
             // Fly to the single marker destination, use zoom level from chapter zoom in JSON
             let zoom = c['Zoom'] ? c['Zoom'] : CHAPTER_ZOOM;
@@ -432,9 +406,7 @@ $(window).on('load', function() {
             const bounds = [marker['Latitude'], marker['Longitude']]
             map.flyTo(
               bounds, zoom
-            ).on('moveend', function () {
-              changeProjection(map, c)
-            });
+            );
           }
 
           // No need to iterate through the following chapters
