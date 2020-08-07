@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { constants } from './constants';
 import './leaflet-providers';
 import 'leaflet-extra-markers';
+import 'leaflet-swoopy';
 
 // Create the Leaflet map with a generic start point
 const map = L.map('map', {
@@ -174,6 +175,27 @@ $(window).on('load', function() {
     var currentlyInFocus; // integer to specify each chapter is currently in focus
     var overlay;  // URL of the overlay for in-focus chapter
     var geoJsonOverlay;
+
+    let allMarkers = []
+    for (const i of chapters) {
+      allMarkers = allMarkers.concat(i['Markers'])
+    }
+
+    for (const j in allMarkers) {
+      const i = parseInt(j)
+      const marker = allMarkers[i]
+      const nextMarker = allMarkers[i+1] || false
+      if (nextMarker){
+        new L.SwoopyArrow([marker['Latitude'], marker['Longitude']], [nextMarker['Latitude'], nextMarker['Longitude']], {
+          text: 'Jag är en testpil',
+          color: '#64A7D9',
+          weight: 2,
+          textClassName: 'swoopy-arrow',
+          // minZoom: 4,
+          maxZoom: 10
+        }).addTo(map);
+      }
+    }
 
     for (const i in chapters) {
       const c = chapters[i];
