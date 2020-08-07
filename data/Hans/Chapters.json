@@ -109,7 +109,7 @@
     "Found": "",
     "Quality": "",
     "Source": "",
-    "Overlay": "https://frigg.isof.se/sagendatabas/api/lm_proxy/{z}/{y}/{x}.png",
+    "Overlay": "https://frigg-test.isof.se/sagendatabas/api/lm_epsg3857_proxy/{z}/{y}/{x}.png",
     "Overlay Transparency": "",
     "GeoJSON Overlay": "",
     "GeoJSON Feature Properties": ""
@@ -132,7 +132,7 @@
     "Found": "",
     "Quality": "",
     "Source": "",
-    "Overlay": "https://frigg.isof.se/sagendatabas/api/lm_proxy/{z}/{y}/{x}.png",
+    "Overlay": "https://frigg-test.isof.se/sagendatabas/api/lm_epsg3857_proxy/{z}/{y}/{x}.png",
     "Overlay Transparency": "",
     "GeoJSON Overlay": "",
     "GeoJSON Feature Properties": ""
@@ -148,7 +148,7 @@
     "Found": "",
     "Quality": "",
     "Source": "",
-    "Overlay": "https://frigg.isof.se/sagendatabas/api/lm_proxy/{z}/{y}/{x}.png",
+    "Overlay": "https://frigg-test.isof.se/sagendatabas/api/lm_epsg3857_proxy/{z}/{y}/{x}.png",
     "Overlay Transparency": "",
     "GeoJSON Overlay": "geojson/sweden.geojson",
     "GeoJSON Feature Properties": ""
@@ -164,7 +164,7 @@
     "Found": "",
     "Quality": "",
     "Source": "",
-    "Overlay": "https://frigg.isof.se/sagendatabas/api/lm_proxy/{z}/{y}/{x}.png",
+    "Overlay": "https://frigg-test.isof.se/sagendatabas/api/lm_epsg3857_proxy/{z}/{y}/{x}.png",
     "Overlay Transparency": "",
     "GeoJSON Overlay": "geojson/sweden.geojson",
     "GeoJSON Feature Properties": ""
