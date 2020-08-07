@@ -189,8 +189,10 @@ $(window).on('load', function() {
         new L.SwoopyArrow([marker['Latitude'], marker['Longitude']], [nextMarker['Latitude'], nextMarker['Longitude']], {
           text: 'Jag är en testpil',
           color: '#64A7D9',
-          weight: 2,
+          weight: "2",
           textClassName: 'swoopy-arrow',
+          hideArrowHead: true,
+          factor: 0.4,
           // minZoom: 4,
           maxZoom: 10
         }).addTo(map);
