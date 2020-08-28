@@ -45,8 +45,8 @@ The Github page is located at: https://isof-itd.github.io/i-rorelse-storymaps/
 
 Se https://webbriktlinjer.se/riktlinjer/?filter=on&guidelineorder=a&freetext-filter=&query-vlwebb-wcag%5B%5D=304&query-vlwebb-target%5B%5D=280&query-vlwebb-target%5B%5D=279
 
-|	WCAG | Nivå | Riktlinje | Status | Kommentar |
-|-- |-- |-- |-- |-- |
+|WCAG|Nivå|Riktlinje|Status|Kommentar|
+|---|---|---|---|---|
 |	1.3.1 | (A) |	Ange i kod vad sidans olika delar har för roll | ❌ |
 |	1.3.2 | (A) |	Presentera innehållet i en meningsfull ordning för alla | ❌ |
 |	1.3.3 | (A) |	Gör inte instruktioner beroende av sensoriska kännetecken | ❌ |
@@ -114,7 +114,7 @@ Inspired by Code for Atlanta mapsfor.us (2016) https://github.com/codeforatlanta
 ## Built Using These Libraries
 
 | Library | Version | License | Notes |
-|--       |--       |--       |--
+|---       |---       |---       |---
 | [Leaflet](https://leafletjs.com)| 1.4.0 | BSD-2-Clause | https://leafletjs.com
 | [jQuery](https://code.jquery.com) | 3.3.1| MIT | https://code.jquery.com
 | [leaflet-providers](https://github.com/leaflet-extras/leaflet-providers) | 1.1.15 | BSD-2-Clause | Manually updated for Carto https https://github.com/leaflet-extras/leaflet-providers |
