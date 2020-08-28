@@ -66,7 +66,7 @@ Se https://webbriktlinjer.se/riktlinjer/?filter=on&guidelineorder=a&freetext-fil
 |	2.1.4 | (A) |	[Skapa kortkommandon med varsamhet](https://webbriktlinjer.se/riktlinjer/68-skapa-snabbkommandon-for-viktiga-funktioner/) | ❌ |
 |	2.2.1 | (A) |	[Ge användarna möjlighet att justera tidsbegränsningar](https://webbriktlinjer.se/riktlinjer/131-ge-anvandarna-mojlighet-att-justera-tidsbegransningar/) | ➖ |
 |	2.2.2 | (A) |	[Ge användarna möjlighet att pausa eller stänga av rörelser](https://webbriktlinjer.se/riktlinjer/132-ge-anvandarna-mojlighet-att-pausa-eller-stanga-av-rorelser/) | ❌ |
-|	2.3.1 | (A) |	[Orsaka inte epileptiska anfall genom blinkande]https://webbriktlinjer.se/riktlinjer/133-orsaka-inte-epileptiska-anfall-genom-blinkande/) | ✔️ |
+|	2.3.1 | (A) |	[Orsaka inte epileptiska anfall genom blinkande](https://webbriktlinjer.se/riktlinjer/133-orsaka-inte-epileptiska-anfall-genom-blinkande/) | ✔️ |
 |	2.4.1 | (A) |	[Erbjud möjlighet att hoppa förbi återkommande innehåll](https://webbriktlinjer.se/riktlinjer/75-gruppera-och-skapa-mojlighet-att-hoppa-forbi-delar-pa-sidorna/) | ❌ |
 |	2.4.3 | (A) |	[Gör en logisk tab-ordning](https://webbriktlinjer.se/riktlinjer/136-gor-en-logisk-tab-ordning/) | ❌ |
 |	2.4.5 | (AA) |	[Erbjud användarna flera olika sätt att navigera](https://webbriktlinjer.se/riktlinjer/32-erbjud-besokaren-alternativa-orienteringsstod/) | ❌ |
