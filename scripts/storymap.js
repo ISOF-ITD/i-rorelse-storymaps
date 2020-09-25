@@ -15,6 +15,9 @@ const map = L.map('map', {
 });
 
 $(window).on('load', function() {
+  let url = new URL(window.location.href);
+  const _embed = (null !== url.searchParams.get("embed"));
+
   var documentSettings = {};
 
   // Some constants, such as default settings
@@ -27,7 +30,6 @@ $(window).on('load', function() {
   });
   
   $.get(`data/Stories.json`, function(stories) {
-    let url = new URL(window.location.href);
     let story = url.searchParams.get("story");
 
     if (story == null) {
@@ -113,16 +115,16 @@ $(window).on('load', function() {
   function initMap(options, chapters) {
 
     // build DOM elements
-    $('<div/>', {id: 'title'}).append(
-      $('<div/>', {id: 'logo'}),
-      $('<div/>', {id: 'header'}).append(
-        $('<a/>', {href: '?stories', id: 'back', text: '< tillbaka'})
-      ),
-    ).appendTo($('body'))
+    if(!_embed){
+      $('<div/>', {id: 'title'}).append(
+        $('<div/>', {id: 'logo'}),
+        $('<div/>', {id: 'header'})
+      ).appendTo($('body'));
+    }
 
     $('<div/>', {id: 'narration'}).append(
       $('<div/>', {id: 'contents'}).append(
-        $('<div/>', {id: 'top'})
+        _embed ? null : $('<div/>', {id: 'top'})
       )
     ).appendTo($('body'))
 
