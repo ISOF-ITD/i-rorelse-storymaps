@@ -324,8 +324,11 @@ $(window).on('load', function() {
     }
     pixelsAbove.push(Number.MAX_VALUE);
 
-    $('div#contents').scroll(function() {
+    $('div#contents').on("scroll", function() {
       var currentPosition = $(this).scrollTop();
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+      const paddingLeft = vw >= 768 ? $("#narration").width() + 40 : 0
+      const paddingTop = 40; //acount for the size of the marker
 
       // Make title disappear on scroll
       if (currentPosition < 200) {
@@ -391,7 +394,8 @@ $(window).on('load', function() {
               const markerBounds = c['Markers'].map( marker => [marker['Latitude'], marker['Longitude']])
               const bounds = [geoJsonBounds, markerBounds]
               map.flyToBounds(
-                bounds
+                bounds,
+                {paddingTopLeft: [paddingLeft, paddingTop]}
               );
 
               // Parse properties string into a JS object
@@ -423,16 +427,51 @@ $(window).on('load', function() {
             // multiple markers become a bound
             const bounds = c['Markers'].map(marker => [marker['Latitude'], marker['Longitude']])
             map.flyToBounds(
-              bounds
+              bounds,
+              {paddingTopLeft: [paddingLeft, paddingTop]}
             );
           } else {
             // Fly to the single marker destination, use zoom level from chapter zoom in JSON
             let zoom = c['Zoom'] ? c['Zoom'] : CHAPTER_ZOOM;
             let marker = c['Markers'][0]
-            const bounds = [marker['Latitude'], marker['Longitude']]
+            const coords = [marker['Latitude'], marker['Longitude']]
+            // center map with padding
+            let newCoords = map.layerPointToLatLng([map.latLngToLayerPoint(coords)["x"] - paddingLeft/2, map.latLngToLayerPoint(coords)["y"]]);
+
             map.flyTo(
-              bounds, zoom
-            );
+              newCoords,
+              undefined,
+              {duration: 1}
+            )
+
+            // this function zooms in/out only three or two levels at a time,
+            // and calls itself recursively after that
+            // because setZoomAround doesn't zoom smoothly above these values
+            let smoothZoom = function(map, zoom, timeout) {
+
+              let partlyZoom = zoom;
+              
+              if(map.getZoom() + 3 < parseInt(zoom)) {
+                partlyZoom = map.getZoom() + 3
+              }
+              else if(map.getZoom() - 2 > parseInt(zoom)) {
+                partlyZoom = map.getZoom() - 2
+              }
+
+              map.setZoomAround(coords, partlyZoom, {animate: true})
+
+              if(partlyZoom != zoom){
+                // next iteration
+                setTimeout(function(){
+                  smoothZoom(map, zoom, timeout)
+                }, timeout)
+              }
+            }
+
+            setTimeout(function(){
+                smoothZoom(map, zoom, 300)
+              }, 
+              1010); 
           }
 
           // No need to iterate through the following chapters
@@ -456,15 +495,18 @@ $(window).on('load', function() {
       .prop("type", "text/css")
       .html("\
       #narration, #title {\
-        background-color: " + trySetting('_narrativeBackground', 'white') + "; \
+        background-color: " + trySetting('_narrativeBackground', 'rgba(255,255,255,0.7)') + "; \
         color: " + trySetting('_narrativeText', 'black') + "; \
       }\
       a, a:visited, a:hover {\
         color: " + trySetting('_narrativeLink', 'blue') + " \
       }\
       .in-focus {\
-        background-color: " + trySetting('_narrativeActive', '#f0f0f0') + " \
-      }")
+        background-color: " + trySetting('_narrativeActive', '#e5f4eb') + " \
+      }\
+      #top {\
+        height: "+ $("#title").height() +"px;\
+      ")
       .appendTo("head");
 
 
@@ -490,7 +532,7 @@ $(window).on('load', function() {
         bounds.push(marker.getLatLng());
       }
     }
-    map.fitBounds(bounds);
+    map.fitBounds(bounds );
 
     $('#map, #narration, #title').css('visibility', 'visible');
     $('div.loader').css('visibility', 'hidden');
