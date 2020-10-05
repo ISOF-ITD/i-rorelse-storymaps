@@ -1,0 +1,104 @@
+[
+  {
+    "Setting": "Storymap Logo",
+    "Customize": "",
+    "Hints": "",
+    "Examples": ""
+  },
+  {
+    "Setting": "Storymap Title",
+    "Customize": "Anders",
+    "Hints": "",
+    "Examples": ""
+  },
+  {
+    "Setting": "Storymap Subtitle",
+    "Customize": "Född 1811 på Jonsborg (Skaftö) enligt födelselängden från Morlanda socken (dit Skaftö hörde under början av 1800-talet). Upptecknaren (Lundquist) anger samma födelseort men istället 1812; förmodligen är det den åldrige Nilsson som minns fel; Lundquist lyssnar på och skriver ner hans berättelser 1898.",
+    "Hints": "",
+    "Examples": ""
+  },
+  {
+    "Setting": "Map Settings",
+    "Customize": "",
+    "Hints": "",
+    "Examples": ""
+  },
+  {
+    "Setting": "Basemap Tiles",
+    "Customize": "OpenTopoMap",
+    "Hints": "Drop-down menu for background basemap tiles",
+    "Examples": "https://leaflet-extras.github.io/leaflet-providers/preview/"
+  },
+  {
+    "Setting": "Zoom Controls",
+    "Customize": "bottomright",
+    "Hints": "",
+    "Examples": ""
+  },
+  {
+    "Setting": "Narrative Background Color",
+    "Customize": "",
+    "Hints": "",
+    "Examples": ""
+  },
+  {
+    "Setting": "Narrative Text Color",
+    "Customize": "",
+    "Hints": "",
+    "Examples": ""
+  },
+  {
+    "Setting": "Narrative Link Color",
+    "Customize": "",
+    "Hints": "",
+    "Examples": ""
+  },
+  {
+    "Setting": "Active Chapter Background Color",
+    "Customize": "",
+    "Hints": "",
+    "Examples": ""
+  },
+  {
+    "Setting": "Media Container Height",
+    "Customize": "300",
+    "Hints": "Maximum height of the image, in pixels. 200 is default. The image will be fit into the container with its proportions kept (it won't be skewed).",
+    "Examples": ""
+  },
+  {
+    "Setting": "Pixels After Final Chapter",
+    "Customize": "600",
+    "Hints": "In pixels. At least 100",
+    "Examples": ""
+  },
+  {
+    "Setting": "Credits",
+    "Customize": "",
+    "Hints": "",
+    "Examples": ""
+  },
+  {
+    "Setting": "Author Name",
+    "Customize": "ISOF",
+    "Hints": "Appears in map credits as \"View data by...\" (or leave blank)",
+    "Examples": ""
+  },
+  {
+    "Setting": "Author Email or Website",
+    "Customize": "jack.dougherty@trincoll.edu",
+    "Hints": "Create link in Author Name by inserting your email or web address (or leave blank)",
+    "Examples": ""
+  },
+  {
+    "Setting": "Author GitHub Repo Link",
+    "Customize": "https://github.com/DataVizForAll/leaflet-maps-with-google-sheets",
+    "Hints": "Appears in map credits as \"View code...\" link (leave as-is OR insert link to your own GitHub code repo)",
+    "Examples": ""
+  },
+  {
+    "Setting": "Code Credit",
+    "Customize": "<a href=\"http://datavizforall.org\">DataVizForAll</a>",
+    "Hints": "",
+    "Examples": ""
+  }
+]
