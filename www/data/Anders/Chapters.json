@@ -1,0 +1,79 @@
+[
+  {
+    "Chapter": "Från 'Jytebörj' till 'Ny Hollan'",
+    "Media Link": "",
+    "Media Credit": "",
+    "Media Credit Link": "",
+    "Description": "<p>”Första gången jag tog hyra, det var i Jytebörj (’Göteborg’), och så gick vi därifrån och till Amerika, till Nyårk (’New York’). Och här rymde jag ifrån det svenska fartyget och till ett engelskt skepp, till en som var kompaniträdare (’handelsskepp från det engelska ostindiska kompaniet’) från London. Vi var sju och femtio man på. Och därifrån gick vi till Ny Sednä (’Sydney’) på Ny Hollan (’Australien’), och där rymde vi. Av sju och femtio man så rymde vi fem och fyrtio. Och där gick vi om bord i ett skepp som hette Astre Läschen (’Australasian’), och det var det bästa seglande skepp på kusten. Och där var jag om bord i arton månader. Så blev vi avmönstrat i Sidnä (’Sydney’) och kom dit tillbaka.</p>",
+    "Zoom": "14",
+    "Markers": [
+      {
+        "Style": "Plain",
+        "Location": "Göteborg",
+        "Latitude": "57.7072326",
+        "Longitude": "11.9670171"
+      },
+      {
+        "Style": "Plain",
+        "Location": "New York",
+        "Latitude": "40.7127281",
+        "Longitude": "-74.0060152"
+      },
+      {
+        "Style": "Plain",
+        "Location": "Sydney",
+        "Latitude": "-33.868820",
+        "Longitude": "151.209290"
+      }
+    ],
+    "Found": "",
+    "Quality": "",
+    "Source": "",
+    "Overlay": "",
+    "Overlay Transparency": "",
+    "GeoJSON Overlay": "",
+    "GeoJSON Feature Properties": ""
+  },
+  {
+    "Chapter": "Från 'Sidnä' till 'Kapnegöles'",
+    "Media Link": "",
+    "Media Credit": "",
+    "Media Credit Link": "",
+    "Description": "<p>”Och så tog jag hyra i Sidnä (’Sydney’) i Ny Hollan (’Australien’) i ett skepp, som vi gick till Calcutta med i Indien. Och den lastade vi med silke och till att skulle gå till Kap Goda Hopp. Och därifrån, ifrån resan ifrån Kap, förlorade (’förliste’) vi på Kapnegöles  (’Kap Agulhas’) bankar. Och där kom vi i land, vi var tjugo mans besättning. Och där kom vi i land alle man för nära (’så när som på’) en man, som vi surrade vid fånglinan (’förtöjningståg’) i båten, så han kom i land död. Den båten som jag var i var vi sex man i. Och båten kantrade för oss, så att vi låg under båten, så vi var nära på döda. Så kom där ett hav (’våg’) och bröt båten upp så att vi blev vid livet, så vi hann i båten till land ochkom i land till hottentotterna.  Och där var vi hos dem i femton dagar och hövdingen där ville inte släppa oss. Kapten kunde tala hottentottiska språket, så han släppte oss.</p>",
+    "Zoom": "14",
+    "Markers": [
+      {
+        "Style": "Plain",
+        "Location": "Sydney",
+        "Latitude": "-33.868820",
+        "Longitude": "151.209290"
+      },
+      {
+        "Style": "Plain",
+        "Location": "Calcutta",
+        "Latitude": "22.572645",
+        "Longitude": "88.363892"
+      },
+      {
+        "Style": "Plain",
+        "Location": "God Hopp",
+        "Latitude": "-34.252449",
+        "Longitude": "18.408020"
+      },
+      {
+        "Style": "Location",
+        "Location": "Kaap Aghulas",
+        "Latitude": "-33.994217",
+        "Longitude": "25.5480901"
+      }
+      
+    ],
+    "Found": "",
+    "Quality": "",
+    "Source": "",
+    "Overlay": "",
+    "Overlay Transparency": "",
+    "GeoJSON Overlay": "",
+    "GeoJSON Feature Properties": ""
+  }
+]
