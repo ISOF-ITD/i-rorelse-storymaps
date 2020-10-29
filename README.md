@@ -2,12 +2,25 @@
 
 [Accessibility](Accessibility.md)
 
+# Prerequisites
+
+* Python 3.6
+* Node.js, npm
+
 # Getting started
 
 Register for a [Mapbox](https://www.mapbox.com/)-key and put the key in a file named **keys.py**:
 
 ```python
 MAPBOX_KEY = "pk.JlIhNNkPfDyvcFjKOugfFvNkOiYcXwDqFghofXjmOyFvNkvFgjKGFGGGJNf"
+```
+
+Install node modules:
+
+```bash
+cd i_rorelse
+npm install
+cd ..
 ```
 
 Start the Django Server
@@ -28,6 +41,11 @@ Optionally, you can install honcho (`pip3.6 install honcho`) to run Django serve
 # runs the Procfile
 honcho start
 ```
+
+Look at your app here:
+* User interface: [localhost:5000](localhost:5000)
+* Admin/editorial interface: [localhost:5000/admin/i_rorelse](localhost:5000/admin/i_rorelse)
+* REST-API: [localhost:5000/api/](localhost:5000/api/)
 
 # Every day tasks
 
