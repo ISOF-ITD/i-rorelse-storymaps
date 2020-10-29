@@ -7,42 +7,21 @@
 Compile with gulp for development, watch for changes: 
 
 ```bash
-sed -i 's/production = true/production = false/' gulpfile.js && gulp
-```
-
-(only once:) Add the original repo as *upstream* remote, in order to be able to merge their changes into our code:
-
-```bash
-git remote add upstream git@github.com:HandsOnDataViz/leaflet-storymaps-with-google-sheets.git
-```
-
-Merge change from the original (*upstream*) repo into our code:
-
-```bash
-git fetch upstream
-git merge upstream/master
+sed -i 's/production = true/production = false/' i_rorelse/gulpfile.js && gulp --cwd i_rorelse
 ```
 
 Compile the code with gulp for release: 
 
 ```bash
-sed -i 's/production = false/production = true/' gulpfile.js && gulp build && git add www && git commit -m 'fresh compile'
+sed -i 's/production = false/production = true/' i_rorelse/gulpfile.js && gulp --cwd i_rorelse build && git add i_rorelse/static && git commit -m 'fresh compile'
 ```
 
-Push the *master* branch to all remotes (except *upstream*):
+Push the *master* branch:
 
 ```bash
-git remote | grep -v upstream | xargs -L1 -I R git push R master
+git push origin master
+git push gogs master
 ```
-
-Push the **www**-directory to the github page (*gh-pages* branch on *origin*):
-
-```bash
-git subtree push --prefix www origin gh-pages
-```
-
-The Github page is located at: https://isof-itd.github.io/i-rorelse-storymaps/
-
 ---
 
 # Leaflet Storymaps with Google Sheets
