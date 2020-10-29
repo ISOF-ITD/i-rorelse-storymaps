@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from keys import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -138,8 +139,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-MAPBOX_KEY = "pk.eyJ1IjoiaXNvZiIsImEiOiJja2c5ZzF0aW0wYmZwMnRteHN0MG1mcXZmIn0.pEwyFeUBIc664EkDPNBydw"
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

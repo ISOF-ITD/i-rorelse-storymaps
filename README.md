@@ -2,6 +2,14 @@
 
 [Accessibility](Accessibility.md)
 
+# Getting started
+
+Register for a [Mapbox](https://www.mapbox.com/)-key and put the key in a file named **keys.py**:
+
+```python
+MAPBOX_KEY = "pk.JlIhNNkPfDyvcFjKOugfFvNkOiYcXwDqFghofXjmOyFvNkvFgjKGFGGGJNf"
+```
+
 # Every day tasks
 
 Compile with gulp for development, watch for changes: 
