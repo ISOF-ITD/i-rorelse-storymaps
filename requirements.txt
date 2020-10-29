@@ -1,0 +1,20 @@
+Django==2.2.10
+mysqlclient==1.4.6
+#ExtendedModelAdminMixin:
+django_baker==0.22
+#ImageField:
+Pillow==5.1.0
+#Web:
+requests==2.18.4
+django-cors-headers==2.1.0
+#Excel:
+pandas==1.0.1
+xlrd==1.2.0
+# HTML-Parsing:
+beautifulsoup4
+# location picker for "I rörelse"
+# https://github.com/Simon-the-Shark/django-mapbox-location-field
+django-mapbox-location-field
+djangorestframework
+django-nested-admin
+django-tinymce

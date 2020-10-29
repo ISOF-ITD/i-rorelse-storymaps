@@ -1,2 +1,5 @@
 .DS_Store
 node_modules
+venv
+i_rorelse/node_modules
+*.pyc
