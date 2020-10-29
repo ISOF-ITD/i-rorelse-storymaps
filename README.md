@@ -10,13 +10,26 @@ Register for a [Mapbox](https://www.mapbox.com/)-key and put the key in a file n
 MAPBOX_KEY = "pk.JlIhNNkPfDyvcFjKOugfFvNkOiYcXwDqFghofXjmOyFvNkvFgjKGFGGGJNf"
 ```
 
-# Every day tasks
+Start the Django Server
+
+```bash
+python3.6 manage.py runserver 5000
+```
 
 Compile with gulp for development, watch for changes: 
 
 ```bash
 sed -i 's/production = true/production = false/' i_rorelse/gulpfile.js && gulp --cwd i_rorelse
 ```
+
+Optionally, you can install honcho (`pip3.6 install honcho`) to run Django server and gulp with a single command:
+
+```bash
+# runs the Procfile
+honcho start
+```
+
+# Every day tasks
 
 Compile the code with gulp for release: 
 
