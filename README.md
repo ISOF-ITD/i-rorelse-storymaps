@@ -9,10 +9,17 @@
 
 # Getting started
 
-Register for a [Mapbox](https://www.mapbox.com/)-key and put the key in a file named **keys.py**:
+Register for a [Mapbox](https://www.mapbox.com/)-key and put the key along with the database configuration in a file named **secrets.py**:
 
 ```python
 MAPBOX_KEY = "pk.JlIhNNkPfDyvcFjKOugfFvNkOiYcXwDqFghofXjmOyFvNkvFgjKGFGGGJNf"
+
+# database
+host='127.0.0.1'
+database='i_rorelse'
+user='root'
+password=''
+port='3306'
 ```
 
 Install node modules:
