@@ -1,7 +1,7 @@
 import json
 from django.http import JsonResponse
 from django.shortcuts import render 
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 from .models import Story, Chapter, Marker
 from .serializers import StorySerializer, ChapterSerializer, MarkerSerializer
 from django.core.cache import cache
@@ -9,15 +9,18 @@ from django.core.cache import cache
 def start(request, path=''):
      return render(request, "index.html")
 
-class StoryViewSet(viewsets.ModelViewSet):
+class ModelViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
+    pass
+
+class StoryViewSet(ModelViewSet):
     queryset = Story.objects.all().order_by('title')
     serializer_class = StorySerializer
 
-class ChapterViewSet(viewsets.ModelViewSet):
+class ChapterViewSet(ModelViewSet):
     queryset = Chapter.objects.all().order_by('title')
     serializer_class = ChapterSerializer
 
-class MarkerViewSet(viewsets.ModelViewSet):
+class MarkerViewSet(ModelViewSet):
     queryset = Marker.objects.all().order_by('id')
     serializer_class = MarkerSerializer
 
