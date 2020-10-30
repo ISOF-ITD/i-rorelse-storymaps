@@ -5,12 +5,9 @@ from mapbox_location_field.admin import MapAdmin
 from django_baker.admin import ExtendedModelAdminMixin
 from .forms import MarkerAdminForm
 from django.utils.html import escape, mark_safe
-from nested_admin import NestedModelAdmin, NestedInlineModelAdminMixin, NestedInlineModelAdmin
+from nested_admin import NestedModelAdmin, NestedInlineModelAdminMixin, NestedInlineModelAdmin, NestedStackedInlineMixin
 
 """ ### overwrite django-nested-admin nested.py ### """
-
-class NestedStackedInlineMixin(NestedInlineModelAdminMixin):
-	template = 'nesting/admin/inlines/stacked.html'
 
 class NestedStackedInline(NestedStackedInlineMixin, admin.options.InlineModelAdmin):
 	show_change_link = True
