@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from keys import *
+import secrets
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,16 +27,6 @@ SECRET_KEY = '1(*&0_h_$tup_(4rj+q(+m-mwx=1%!&=@4&e$li8wrizc&)23o'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-# https://docs.djangoproject.com/en/2.2/topics/cache/
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/var/tmp/django_cache',
-    }
-}
-CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
 # Application definition
 
@@ -66,6 +56,8 @@ MIDDLEWARE = [
     'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
+
 ROOT_URLCONF = 'i_rorelse.urls'
 
 TEMPLATES = [
@@ -93,14 +85,15 @@ WSGI_APPLICATION = 'i_rorelse.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'i_rorelse',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
+        'NAME': secrets.database,
+        'USER': secrets.user,
+        'PASSWORD': secrets.password,
+        'HOST': secrets.host,
+        'PORT': secrets.port,
     }
 }
 
+MAPBOX_KEY = secrets.MAPBOX_KEY
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
