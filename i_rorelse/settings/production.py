@@ -9,6 +9,8 @@ import secrets
 #     }
 # }
 
+WSGI_APPLICATION = 'i_rorelse.wsgi.application'
+
 PROJECT_NAME = '/i-rorelse'
 
 # SECURITY WARNING: keep the secret key used in production secret!

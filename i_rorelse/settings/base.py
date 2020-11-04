@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'i_rorelse.wsgi.application'
+
 
 
 # Database

@@ -40,17 +40,17 @@ gulp.task('less', function(){
 			includePaths: ['node_modules']
 		  }))
         .pipe(gulpif(production, minifyCSS({keepBreaks:true})))
-        .pipe(gulp.dest('./static/css'));
+        .pipe(gulp.dest('./static/i_rorelse/css'));
 });
 
 gulp.task('webfonts', function(){
 	return gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/**.*')
-		.pipe(gulp.dest('./static/webfonts'));
+		.pipe(gulp.dest('./static/i_rorelse/webfonts'));
 });
 
 gulp.task('markers', function(){
 	return gulp.src('./node_modules/leaflet-extra-markers/src/assets/img/**.*')
-		.pipe(gulp.dest('./static/img'));
+		.pipe(gulp.dest('./static/i_rorelse/img'));
 });
 
 gulp.task('assets', gulp.series('webfonts', 'markers'));
@@ -99,5 +99,5 @@ function bundleApp(isProduction) {
 		// .pipe(gulpif(isProduction,replace('data/', 'https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/data/')))
     	.pipe(buffer())
         .pipe(gulpif(isProduction, uglify()))
-	    .pipe(gulp.dest('./static/js/'));
+	    .pipe(gulp.dest('./static/i_rorelse/js/'));
 }
