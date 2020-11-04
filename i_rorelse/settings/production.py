@@ -1,7 +1,7 @@
 from .base import *
 import secrets
 
-# TODO: Production Cache einrichten, kanske bäst memory based
+# TODO: Production Cache einrichten, kanske helst memory based
 # CACHES = {
 #     'default': {
 #         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
