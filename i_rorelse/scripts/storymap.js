@@ -31,7 +31,7 @@ $(window).on('load', function() {
     scrollPosition = $(this).scrollTop();
   });
   
-  $.get(`api/stories.json`, function(stories) {
+  $.get(`/api/stories.json`, function(stories) {
     let story = url['pathname'].replace('/', '')
 
     if (!story) {
@@ -555,7 +555,7 @@ $(window).on('load', function() {
     var attributionHTML = $('.leaflet-control-attribution')[0].innerHTML;
     var credit = 'View <a href="'
       // Show Google Sheet URL if the variable exists and is not empty, otherwise link to Chapters.json
-      + (typeof googleDocURL !== 'undefined' && googleDocURL ? googleDocURL : `./api/stories/${getSetting('_id')}.json`)
+      + (typeof googleDocURL !== 'undefined' && googleDocURL ? googleDocURL : `/api/stories/${getSetting('_id')}.json`)
       + '" target="_blank">data</a>';
     
     var name = getSetting('_authorName');
