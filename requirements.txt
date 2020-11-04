@@ -12,7 +12,7 @@ pandas==1.0.1
 xlrd==1.2.0
 # HTML-Parsing:
 beautifulsoup4
-# location picker for "I rörelse"
+# location picker for "I rorelse"
 # https://github.com/Simon-the-Shark/django-mapbox-location-field
 django-mapbox-location-field
 djangorestframework
