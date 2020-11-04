@@ -9,6 +9,8 @@ import secrets
 #     }
 # }
 
+PROJECT_NAME = '/i-rorelse'
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secrets.secret_key
 
@@ -18,3 +20,5 @@ REST_FRAMEWORK = {
         # 'rest_framework.renderers.BrowsableAPIRenderer',
     ]
 }
+
+ALLOWED_HOSTS = ['frigg-test.isof.se' ]
