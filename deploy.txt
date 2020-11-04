@@ -1,0 +1,44 @@
+#1. Make deploy folder
+mkdir /var/www/django/i-rorelse
+
+#2. Install code
+cd /var/www/django/i-rorelse
+git clone https://vcs.its.uu.se/isof-devs/i-rorelse-storymaps.git
+chmod -R 775 /var/www/django/i-rorelse
+
+#3. Set correct environment settings:
+#Select settings.py file according to debug logging or not 
+#Normally debug logging config NOT in production server as the log files get bigger
+# cp settings_notdebug.py settings.py
+# Create secrets file
+cp secrets_template.py secrets.py
+vi secrets.py
+
+# generate secret key (i django, on local machine)
+python3.6 manage.py shell
+>> from django.core.management import utils
+>> print(utils.get_random_secret_key())
+
+#4. Create venv for this application
+python3.6 -m venv /var/www/django/i-rorelse/venv
+source /var/www/django/i-rorelse/venv/bin/activate
+cd /var/www/django/i-rorelse/i-rorelse-storymaps
+pip3.6 list
+pip3.6 install -r requirements.txt
+pip3.6 list
+
+#5. Install deploy and update scripts
+#Copy files from SVN repo
+cp /var/www/django//TradarkAdmin/gitupdate.sh /var/www/django/i-rorelse/i-rorelse-storymaps
+chmod g+x gitupdate.sh
+#Install configuration of wsgi in apache for this application
+more /var/www/django/i-rorelse/i-rorelse-storymaps/i-rorelse.conf >> /etc/httpd/conf.d/django_test3.conf
+
+#Test without webserver apache
+#See if any errors
+python3.6 /var/www/django/i-rorelse/i-rorelse-storymaps/manage.py runserver 0.0.0.0:8000
+python3.6 /var/www/django/i-rorelse/i-rorelse-storymaps/manage.py showmigrations
+curl http://127.0.0.1:8000/admin
+
+# starta om Apache
+sudo systemctl restart httpd
