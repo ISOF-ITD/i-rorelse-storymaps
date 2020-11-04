@@ -22,7 +22,7 @@ var gulpif = require('gulp-if');
 var del = require('del');
 
 
-var production = false;
+var production = true;
 
 if (production) {
 	process.env.NODE_ENV = 'production';
@@ -96,7 +96,7 @@ function bundleApp(isProduction) {
 		// do not interrupt when gulp produces error
 	    .on('error', isProduction ? log : swallowError)
 		.pipe(source('app.js'))
-		// .pipe(gulpif(isProduction,replace('data/', 'https://frigg-test.isof.se/sagendatabas/api/frigg_static/js-apps/i-rorelse-storymaps/data/')))
+		.pipe(gulpif(isProduction,replace('/api/', '/i-rorelse/api/')))
     	.pipe(buffer())
         .pipe(gulpif(isProduction, uglify()))
 	    .pipe(gulp.dest('./static/i_rorelse/js/'));
