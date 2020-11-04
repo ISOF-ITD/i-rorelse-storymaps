@@ -90,6 +90,7 @@ DATABASES = {
         'PASSWORD': secrets.password,
         'HOST': secrets.host,
         'PORT': secrets.port,
+	'OPTIONS': {'ssl': True},
     }
 }
 

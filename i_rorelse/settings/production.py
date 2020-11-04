@@ -11,7 +11,7 @@ import secrets
 
 WSGI_APPLICATION = 'i_rorelse.wsgi.application'
 
-PROJECT_NAME = '/i-rorelse'
+#PROJECT_NAME = '/i-rorelse'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secrets.secret_key
@@ -24,3 +24,8 @@ REST_FRAMEWORK = {
 }
 
 ALLOWED_HOSTS = ['frigg-test.isof.se' ]
+
+STATIC_URL = '/static/i-rorelse/'
+
+STATIC_ROOT = '/var/www/django/static/i-rorelse'
+
