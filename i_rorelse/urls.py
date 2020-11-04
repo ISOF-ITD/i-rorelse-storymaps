@@ -15,7 +15,7 @@ apiRouter.register(r'geojson_overlays/(?P<input>.+)', GeoJsonOverlayViewSet, bas
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(apiRouter.urls)),
-    re_path(r'^tinymce/', include('tinymce.urls')),
+    re_path(r'^tinymce/', include('tinymce.urls')), # TODO: kanske inte behövs?
     path('', views.start, name='start'),
     path('<path>', views.start, name='start'),
 ]

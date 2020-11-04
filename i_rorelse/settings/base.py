@@ -133,3 +133,32 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# CORS_ORIGIN_ALLOW_ALL = True
+
+# *** Settings for HTTPS ***
+
+# Whether to use a secure cookie for the session cookie. Cookie is only sent under an HTTPS connection.
+#SESSION_COOKIE_SECURE = True
+
+# Whether to use a secure cookie for the CSRF cookie.
+# - Browsers may ensure that the cookie is only sent with an HTTPS connection.
+#CSRF_COOKIE_SECURE = True
+
+# ** These settings have no effect if SecurityMiddleware is not enabled! **
+# If True, the SecurityMiddleware redirects all non-HTTPS requests to HTTPS (except for those URLs matching
+# a regular expression listed in SECURE_REDIRECT_EXEMPT).
+# SECURE_SSL_REDIRECT = True
+
+# If a URL path matches a regular expression in this list, the request will not be redirected to HTTPS.
+# If SECURE_SSL_REDIRECT is False, this setting has no effect. (Requires SecurityMiddleware).
+# - ELAN as of version 4.9.4 does not support HTTPS correctly,
+# - therefore the externally controlled vocabulary needs to be served with HTTP.
+#SECURE_REDIRECT_EXEMPT = [r'dictionary/ecv/']
+
+# All SSL redirects will be directed to this host rather than the originally-requested host.
+# - (Requires SecurityMiddleware  and SECURE_SSL_REDIRECT=True).
+#SECURE_SSL_HOST = 'signbank.csc.fi'
+
+# If True, the SecurityMiddleware sets the X-XSS-Protection: 1; mode=block header on all responses that
+# do not already have it.
+#SECURE_BROWSER_XSS_FILTER = True

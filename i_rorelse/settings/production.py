@@ -1,12 +1,16 @@
 from .base import *
+import secrets
 
-# TODO: Production Cache einrichten
+# TODO: Production Cache einrichten, kanske bäst memory based
 # CACHES = {
 #     'default': {
 #         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
 #         'LOCATION': '/var/tmp/django_cache',
 #     }
 # }
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = secrets.secret_key
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
