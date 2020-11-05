@@ -102,7 +102,7 @@ $(window).on('load', function() {
       stories.map(story => 
         $('<li/>').append($('<a/>', 
           {
-            href: url['pathname'] + `${story['id']}`
+            href: (url['pathname'] + `/${story['id']}`).replace(/\/\//g, "/")
           })
           .text(story['title']))
       )
