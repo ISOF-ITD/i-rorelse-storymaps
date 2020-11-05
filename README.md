@@ -33,7 +33,7 @@ cd ..
 Start the Django Server
 
 ```bash
-python3.6 manage.py runserver 5000
+python3.6 manage-development.py runserver 5000
 ```
 
 Compile with gulp for development, watch for changes: 
@@ -79,7 +79,7 @@ Daily deployment, on server:
 cd /var/www/django/i-rorelse/i-rorelse-storymaps
 ./gitupdate.sh
 source ../venv/bin/activate
-python3.6 /var/www/django/i-rorelse/i-rorelse-storymaps/manage.py collectstatic
+python3.6 /var/www/django/i-rorelse/i-rorelse-storymaps/manage-production.py collectstatic
 sudo systemctl restart httpd # look in slack channel #apacherestart first!
 ```
 
