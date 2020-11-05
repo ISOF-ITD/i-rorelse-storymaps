@@ -32,7 +32,7 @@ $(window).on('load', function() {
   });
   
   $.get(`/api/stories.json`, function(stories) {
-    let story = url['pathname'].replace('/', '')
+    let story = url['pathname'].replace('i-rorelse', '').replace(/\//g, "")
 
     if (!story) {
     initStoryList(
