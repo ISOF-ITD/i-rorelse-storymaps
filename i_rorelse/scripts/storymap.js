@@ -36,7 +36,7 @@ $(window).on('load', function() {
 
     if (!story) {
     initStoryList(
-        stories
+        stories, url
     )
       }
     else {
@@ -89,7 +89,7 @@ $(window).on('load', function() {
     }).addTo(map);
   }
 
-  function initStoryList(stories) {
+  function initStoryList(stories, url) {
     $('<div/>', {id: 'title', style: 'visibility: visible; position: relative;'}).append(
       $('<div/>', {id: 'header'}).append(
         $('<h1/>', {text: 'I rörelse'}),
@@ -102,7 +102,7 @@ $(window).on('load', function() {
       stories.map(story => 
         $('<li/>').append($('<a/>', 
           {
-            href: `${story['id']}`
+            href: url['pathname'] + `/${story['id']}`
           })
           .text(story['title']))
       )
