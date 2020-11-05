@@ -1,4 +1,5 @@
 from .base import *
+import secrets
 
 # https://docs.djangoproject.com/en/2.2/topics/cache/
 
@@ -17,3 +18,6 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     ]
 }
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = secrets.SECRET_KEY
