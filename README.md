@@ -68,6 +68,22 @@ Push the *master* branch:
 git push origin master
 git push gogs master
 ```
+
+# Deployment
+
+First install, see **deploy.txt**
+
+Daily deployment, on server:
+
+```bash
+cd /var/www/django/i-rorelse/i-rorelse-storymaps
+./gitupdate.sh
+source ../venv/bin/activate
+python3.6 /var/www/django/i-rorelse/i-rorelse-storymaps/manage.py collectstatic
+sudo systemctl restart httpd # look in slack channel #apacherestart first!
+```
+
+
 ---
 
 # Leaflet Storymaps with Google Sheets
