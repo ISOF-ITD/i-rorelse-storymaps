@@ -5,6 +5,9 @@ from rest_framework import viewsets, mixins
 from .models import Story, Chapter, Marker
 from .serializers import StorySerializer, ChapterSerializer, MarkerSerializer
 from django.core.cache import cache
+import os, i_rorelse
+
+path = os.path.dirname(i_rorelse.__file__)
 
 def start(request, path=''):
      return render(request, "index.html")
@@ -24,10 +27,11 @@ class MarkerViewSet(ModelViewSet):
     queryset = Marker.objects.all().order_by('id')
     serializer_class = MarkerSerializer
 
-def get_geojson_overlay(input):
-    input_list = [i.strip() for i in input.split(',')]
+def get_geojson_overlay(input_string):
+    input_list = [i.strip() for i in input_string.split(',')]
 
-    f = open('i_rorelse/geojson/countries.geojson')
+
+    f = open(path + '/geojson/countries.geojson')
     json_string_countries = f.read()
     f.close()
 
@@ -39,7 +43,7 @@ def get_geojson_overlay(input):
             )
         )
     
-    f = open('i_rorelse/geojson/us_states.geojson')
+    f = open(path + '/geojson/us_states.geojson')
     json_string_states = f.read()
     f.close()
 
