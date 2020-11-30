@@ -64,5 +64,17 @@ def get_geojson_overlay(input_string):
 
 class GeoJsonOverlayViewSet(viewsets.ViewSet):
     def list(self, request, input):
-        cache_key = 'get_geojson_overlay-' + '_'.join([i.strip() for i in input.split(',')]).replace(" ", "")
-        return cache.get_or_set(cache_key, get_geojson_overlay(input), None)
+        cache_key = 'get_geojson_overlay-' + '_'.join(
+            [i.strip() for i in input.split(',')]
+            ).replace(" ", "")
+
+        response = cache.get(cache_key)
+        
+        if  response is None:
+            response = get_geojson_overlay(input)
+            cache.set(
+                cache_key,
+                response
+            )
+
+        return response

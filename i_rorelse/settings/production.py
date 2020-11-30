@@ -1,13 +1,13 @@
-from .base import *
 import secrets
+from .base import *
 
-# TODO: Production Cache einrichten, kanske helst memory based
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-#         'LOCATION': '/var/tmp/django_cache',
-#     }
-# }
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'i-rorelse',
+        'TIMEOUT': None,
+    }
+}
 
 WSGI_APPLICATION = 'i_rorelse.wsgi.application'
 
@@ -28,4 +28,3 @@ ALLOWED_HOSTS = ['frigg-test.isof.se' ]
 STATIC_URL = '/static/i-rorelse/'
 
 STATIC_ROOT = '/var/www/django/static/i-rorelse'
-
