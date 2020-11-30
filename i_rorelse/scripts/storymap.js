@@ -31,8 +31,8 @@ $(window).on('load', function() {
     scrollPosition = $(this).scrollTop();
   });
   
-  $.get(`/api/stories.json`, function(stories) {
-    let story = url['pathname'].replace('i-rorelse', '').replace(/\//g, "")
+  $.getJSON(`/api/stories.json`, function(stories) {
+    const story = url['pathname'].replace('i-rorelse', '').replace(/\//g, "")
 
     if (!story) {
     initStoryList(
@@ -40,7 +40,8 @@ $(window).on('load', function() {
     )
       }
     else {
-      $.get(`/api/stories/${story}.json`, function(data) {
+      $.getJSON(`/api/stories.json?title=${story}`, function(stories) {
+          const data = stories[0]
           initMap(
             data
           )
@@ -102,7 +103,7 @@ $(window).on('load', function() {
       stories.map(story => 
         $('<li/>').append($('<a/>', 
           {
-            href: (url['pathname'] + `/${story['id']}`).replace(/\/\//g, "/")
+            href: (url['pathname'] + `/${story['title']}`).replace(/\/\//g, "/")
           })
           .text(story['title']))
       )
