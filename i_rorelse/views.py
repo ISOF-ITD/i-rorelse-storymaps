@@ -10,7 +10,7 @@ import os, i_rorelse
 path = os.path.dirname(i_rorelse.__file__)
 
 def start(request, path=''):
-     return render(request, "index.html")
+    return render(request, "index.html")
 
 class ModelViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
     pass
@@ -18,11 +18,25 @@ class ModelViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.Ge
 class StoryViewSet(ModelViewSet):
 
     def get_queryset(self):
+        cache_key_stories = str(Story.objects.latest("updated_at").updated_at).replace(" ", "")
+        cache_key_chapters = str(Chapter.objects.latest("updated_at").updated_at).replace(" ", "")
+        cache_key_markers = str(Marker.objects.latest("updated_at").updated_at).replace(" ", "")
         title= self.request.query_params.get('title')
-        if title is not None:
-            queryset = Story.objects.filter(title=title).order_by('title')
-        else:
-            queryset = Story.objects.all().order_by('title')
+        cache_key = f'StoryViewSet-{cache_key_stories}-{cache_key_chapters}-{cache_key_markers}-{title}'
+        print(cache_key)
+        queryset = cache.get(cache_key)
+        queryset = None
+
+        if queryset is None:
+            if title is not None:
+                queryset = Story.objects.filter(title=title).order_by('title')
+            else:
+                queryset = Story.objects.all().order_by('title')
+            cache.set(
+                cache_key,
+                queryset
+            )
+
         return queryset
 
     queryset = Story.objects.all().order_by('title')
@@ -78,7 +92,6 @@ class GeoJsonOverlayViewSet(viewsets.ViewSet):
             ).replace(" ", "")
 
         response = cache.get(cache_key)
-        
         if  response is None:
             response = get_geojson_overlay(input)
             cache.set(
