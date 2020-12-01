@@ -32,7 +32,7 @@ $(window).on('load', function() {
   });
   
   $.getJSON(`${ROOT_PATH}api/stories.json`, function(stories) {
-    const story = url['pathname']
+    const story = url['pathname'].replace(ROOT_PATH, '')
 
     if (!story) {
     initStoryList(stories)
