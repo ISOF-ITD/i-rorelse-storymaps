@@ -16,6 +16,15 @@ class ModelViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.Ge
     pass
 
 class StoryViewSet(ModelViewSet):
+
+    def get_queryset(self):
+        title= self.request.query_params.get('title')
+        if title is not None:
+            queryset = Story.objects.filter(title=title).order_by('title')
+        else:
+            queryset = Story.objects.all().order_by('title')
+        return queryset
+
     queryset = Story.objects.all().order_by('title')
     serializer_class = StorySerializer
 

@@ -16,13 +16,12 @@ var buffer = require('vinyl-buffer');
 var less = require('gulp-less');
 var minifyCSS = require('gulp-csso');
 var htmlmin = require('gulp-htmlmin');
-var replace = require('gulp-replace')
 var path = require('path');
 var gulpif = require('gulp-if');
 var del = require('del');
 
 
-var production = true;
+var production = false;
 
 if (production) {
 	process.env.NODE_ENV = 'production';
@@ -96,7 +95,6 @@ function bundleApp(isProduction) {
 		// do not interrupt when gulp produces error
 	    .on('error', isProduction ? log : swallowError)
 		.pipe(source('app.js'))
-		.pipe(gulpif(isProduction,replace('/api/', '/i-rorelse/api/')))
     	.pipe(buffer())
         .pipe(gulpif(isProduction, uglify()))
 	    .pipe(gulp.dest('./static/i_rorelse/js/'));

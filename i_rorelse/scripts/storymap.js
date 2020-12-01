@@ -31,21 +31,23 @@ $(window).on('load', function() {
     scrollPosition = $(this).scrollTop();
   });
   
-  $.getJSON(`/api/stories.json`, function(stories) {
-    const story = url['pathname'].replace('i-rorelse', '').replace(/\//g, "")
+  $.getJSON(`${ROOT_PATH}api/stories.json`, function(stories) {
+    const story = url['pathname']
 
     if (!story) {
-    initStoryList(
-        stories, url
-    )
+    initStoryList(stories)
       }
     else {
-      $.getJSON(`/api/stories.json?title=${story}`, function(stories) {
-          const data = stories[0]
-          initMap(
-            data
-          )
-      }).fail(function(e) { alert(`Could not read /api/stories/${story}.json`) })
+      $.getJSON(`${ROOT_PATH}api/stories.json?title=${story}`, function(filtered_stories) {
+          const data = filtered_stories[0]
+          if (data) {
+            initMap(data)
+            } else {
+              initStoryList(stories)
+            }
+      }).fail( function(e) { 
+        initStoryList(stories)
+      })
     }
   });
 
@@ -63,8 +65,6 @@ $(window).on('load', function() {
    * getSetting(s) is equivalent to documentSettings[constants.s]
    */
   function getSetting(s) {
-    // console.log(s)
-    // console.log(documentSettings[constants[s]])
     return documentSettings[constants[s]];
   }
 
@@ -90,7 +90,7 @@ $(window).on('load', function() {
     }).addTo(map);
   }
 
-  function initStoryList(stories, url) {
+  function initStoryList(stories) {
     $('<div/>', {id: 'title', style: 'visibility: visible; position: relative;'}).append(
       $('<div/>', {id: 'header'}).append(
         $('<h1/>', {text: 'I rörelse'}),
@@ -103,7 +103,7 @@ $(window).on('load', function() {
       stories.map(story => 
         $('<li/>').append($('<a/>', 
           {
-            href: (url['pathname'] + `/${story['title']}`).replace(/\/\//g, "/")
+            href: (`${ROOT_PATH}${story['title']}`)
           })
           .text(story['title']))
       )
@@ -134,7 +134,6 @@ $(window).on('load', function() {
     var chapterContainerMargin = 70;
 
     document.title = getSetting('_mapTitle');
-    console.log(getSetting('_mapTitle'))
     $('#header').append('<h1>' + getSetting('_mapTitle') + '</h1>');
     $('#header').append('<h2>' + getSetting('_mapSubtitle') + '</h2>');
 
@@ -391,12 +390,9 @@ $(window).on('load', function() {
           }
 
           if (c['geojson_overlay']) {
-            const geojsonoverlay_api = '/api/geojson_overlays/';
+            const geojsonoverlay_api = `${ROOT_PATH}api/geojson_overlays/`;
             const overlay_path = geojsonoverlay_api + c['geojson_overlay'] + '/';
             $.getJSON(overlay_path).done(function(geojson) {
-              console.log(geojson)
-              // const geoJson = JSON.parse(geojson)
-              // console.log(geoJson)
               const geoJsonBounds = L.geoJson(geojson).getBounds()
               const markerBounds = c['markers'].map( marker => swapCoordinates( marker['location'].slice(1,-1).split(',') ) )
               const bounds = [geoJsonBounds, markerBounds]
@@ -535,7 +531,7 @@ $(window).on('load', function() {
     var attributionHTML = $('.leaflet-control-attribution')[0].innerHTML;
     var credit = 'View <a href="'
       // Show Google Sheet URL if the variable exists and is not empty, otherwise link to Chapters.json
-      + (typeof googleDocURL !== 'undefined' && googleDocURL ? googleDocURL : `/api/stories/${getSetting('_id')}.json`)
+      + (typeof googleDocURL !== 'undefined' && googleDocURL ? googleDocURL : `${ROOT_PATH}api/stories/${getSetting('_id')}.json`)
       + '" target="_blank">data</a>';
     
     var name = getSetting('_authorName');
