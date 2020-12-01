@@ -6,7 +6,7 @@ import './leaflet-providers';
 import 'leaflet-extra-markers';
 import 'leaflet-swoopy';
 import 'jqueryrouter';
-import { swapCoordinates } from './helpers';
+import { swapCoordinates, smoothZoom } from './helpers';
 
 // Create the Leaflet map with a generic start point
 const map = L.map('map', {
@@ -439,11 +439,14 @@ $(window).on('load', function() {
             );
           } else {
             // Fly to the single marker destination, use zoom level from chapter zoom in JSON
-            let zoom = c['zoom'] ? c['zoom'] : CHAPTER_ZOOM;
-            let marker = c['markers'][0]
+            const zoom = c['zoom'] ? c['zoom'] : CHAPTER_ZOOM;
+            const marker = c['markers'][0]
             const coords =  swapCoordinates( marker['location'].slice(1,-1).split(',') )
             // center map with padding
-            let newCoords = map.layerPointToLatLng([map.latLngToLayerPoint(coords)["x"] - paddingLeft/2, map.latLngToLayerPoint(coords)["y"]]);
+            const newCoords = map.layerPointToLatLng([
+              map.latLngToLayerPoint(coords)["x"] - paddingLeft/2, 
+              map.latLngToLayerPoint(coords)["y"]
+            ]);
 
             map.flyTo(
               newCoords,
@@ -451,32 +454,8 @@ $(window).on('load', function() {
               {duration: 1}
             )
 
-            // this function zooms in/out only three or two levels at a time,
-            // and calls itself recursively after that
-            // because setZoomAround doesn't zoom smoothly above these values
-            let smoothZoom = function(map, zoom, timeout) {
-
-              let partlyZoom = zoom;
-              
-              if(map.getZoom() + 3 < parseInt(zoom)) {
-                partlyZoom = map.getZoom() + 3
-              }
-              else if(map.getZoom() - 2 > parseInt(zoom)) {
-                partlyZoom = map.getZoom() - 2
-              }
-
-              map.setZoomAround(coords, partlyZoom, {animate: true})
-
-              if(partlyZoom != zoom){
-                // next iteration
-                setTimeout(function(){
-                  smoothZoom(map, zoom, timeout)
-                }, timeout)
-              }
-            }
-
             setTimeout(function(){
-                smoothZoom(map, zoom, 300)
+              smoothZoom(map, zoom, 300, coords)
               }, 
               1010); 
           }
