@@ -16,13 +16,19 @@ class ModelViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.Ge
     pass
 
 class StoryViewSet(ModelViewSet):
-
     def get_queryset(self):
-        title= self.request.query_params.get('title')
-        if title is not None:
-            queryset = Story.objects.filter(title=title).order_by('title')
-        else:
+        cache_key = 'StoryViewSet'
+        queryset = cache.get(cache_key)
+
+        if queryset is None:
             queryset = Story.objects.all().order_by('title')
+            cache.set(
+                cache_key,
+                queryset
+            )
+            print(f"Set new cache key '{cache_key}'")
+        else:
+            print("Got values from cache")
 
         return queryset
 

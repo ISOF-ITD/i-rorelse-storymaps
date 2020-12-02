@@ -1,6 +1,8 @@
 from django.db import models
 from mapbox_location_field.models import LocationField
 from tinymce.models import HTMLField
+from django.db.models.signals import post_save, post_delete
+from django.core.cache import cache
 
 class Story(models.Model):
     title = models.CharField(blank=False, verbose_name="Title", max_length=255)
@@ -61,3 +63,15 @@ class Marker(models.Model):
 
     def __str__(self):
         return self.location_name
+
+def model_post_change(sender, **kwargs):
+    cache_key = 'StoryViewSet'
+    cache.delete(cache_key)
+    print(f"Deleted cache key {cache_key}.")
+
+post_save.connect(model_post_change, sender=Story)
+post_save.connect(model_post_change, sender=Chapter)
+post_save.connect(model_post_change, sender=Marker)
+post_delete.connect(model_post_change, sender=Story)
+post_delete.connect(model_post_change, sender=Chapter)
+post_delete.connect(model_post_change, sender=Marker)
