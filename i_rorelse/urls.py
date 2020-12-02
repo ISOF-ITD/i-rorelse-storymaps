@@ -3,7 +3,6 @@ from django.urls import include, path, re_path
 from . import views
 from .models import Story 
 from rest_framework import routers, serializers, viewsets
-# from .serializers import StorySerializer
 from .views import StoryViewSet, ChapterViewSet, MarkerViewSet, GeoJsonOverlayViewSet
 
 apiRouter = routers.DefaultRouter()

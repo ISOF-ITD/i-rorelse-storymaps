@@ -16,18 +16,18 @@ const map = L.map('map', {
   zoomControl: false
 });
 
-const initStoryList = function(stories) {
-  $('<div/>', {id: 'title', style: 'visibility: visible; position: relative;'}).append(
-    $('<div/>', {id: 'header'}).append(
-      $('<h1/>', {text: 'I rörelse'}),
-      $('<h2/>', {text: 'Berättelser'})
+const initStoryList = function (stories) {
+  $('<div/>', { id: 'title', style: 'visibility: visible; position: relative;' }).append(
+    $('<div/>', { id: 'header' }).append(
+      $('<h1/>', { text: 'I rörelse' }),
+      $('<h2/>', { text: 'Berättelser' })
     )
   ).appendTo($('body'));
 
-  $('<div/>', {id: 'story-list'}).appendTo($('body'))
-  let $ul = $('<ul>', {class: 'stories'}).append(
-    stories.map(story => 
-      $('<li/>').append($('<a/>', 
+  $('<div/>', { id: 'story-list' }).appendTo($('body'))
+  let $ul = $('<ul>', { class: 'stories' }).append(
+    stories.map(story =>
+      $('<li/>').append($('<a/>',
         {
           href: (`${ROOT_PATH}${story['title']}`)
         })
@@ -38,7 +38,7 @@ const initStoryList = function(stories) {
   $('div.loader').css('visibility', 'hidden');
 }
 
-$(window).on('load', function() {
+$(window).on('load', function () {
 
   let url = new URL(window.location.href);
 
@@ -49,25 +49,25 @@ $(window).on('load', function() {
 
   // This watches for the scrollable container
   var scrollPosition = 0;
-  $('div#contents').scroll(function() {
+  $('div#contents').on("scroll", function () {
     scrollPosition = $(this).scrollTop();
   });
 
   $.getJSON(`${ROOT_PATH}api/stories.json`, function (stories) {
     // trail and replace slashes because django and JS return different kinds of paths,
     // with and without slash
-    const story = (url['pathname'] + "/")
+    const story_title = (`${url['pathname']}/`)
       .replace(stripTrailingSlash(ROOT_PATH), '') // remove root_path, e.g. "/i-rorelse/" --> "/i-rorelse"
       .replace(/\//g, ""); //remove all remaining slashes
-    if (!story) {
+    if (!story_title) {
       initStoryList(stories)
     }
     else {
-      const data = stories.filter(s => s["title"] == story)[0]
-      if (data) {
-        initMap(data)
+      const story = stories.filter(s => s["title"] == story_title)[0]
+      if (story) {
+        initMap(story)
       } else {
-        initStoryList(stories)
+        window.location.replace(ROOT_PATH)
       }
     }
   }).fail(function (e) {
@@ -119,14 +119,14 @@ $(window).on('load', function() {
 
     // build DOM elements
 
-    $('<div/>', {id: 'title'}).append(
-      $('<div/>', {id: 'logo'}),
-      $('<div/>', {id: 'header'})
+    $('<div/>', { id: 'title' }).append(
+      $('<div/>', { id: 'logo' }),
+      $('<div/>', { id: 'header' })
     ).appendTo($('body'));
 
-    $('<div/>', {id: 'narration'}).append(
-      $('<div/>', {id: 'contents'}).append(
-        $('<div/>', {id: 'top'})
+    $('<div/>', { id: 'narration' }).append(
+      $('<div/>', { id: 'contents' }).append(
+        $('<div/>', { id: 'top' })
       )
     ).appendTo($('body'))
 
@@ -135,12 +135,12 @@ $(window).on('load', function() {
     var chapterContainerMargin = 70;
 
     document.title = getSetting('_mapTitle');
-    $('#header').append('<h1>' + getSetting('_mapTitle') + '</h1>');
-    $('#header').append('<h2>' + getSetting('_mapSubtitle') + '</h2>');
+    $('#header').append(`<h1>${getSetting('_mapTitle')}</h1>`);
+    $('#header').append(`<h2>${getSetting('_mapSubtitle')}</h2>`);
 
     // Add logo
     if (getSetting('_mapLogo')) {
-      $('#logo').append('<img src="' + getSetting('_mapLogo') + '" />');
+      $('#logo').append(`<img src="${getSetting('_mapLogo')}" />`);
       $('#top').css('height', '60px');
     } else {
       $('#logo').css('display', 'none');
@@ -159,7 +159,7 @@ $(window).on('load', function() {
 
     var markers = [];
 
-    var markActiveColor = function(k) {
+    var markActiveColor = function (k) {
       /* Removes marker-active class from all markers */
       for (var i = 0; i < markers.length; i++) {
         if (markers[i] && markers[i]._icon) {
@@ -185,12 +185,13 @@ $(window).on('load', function() {
       allMarkers = allMarkers.concat(i['markers'])
     }
 
+    // Add swoopy arrows
     for (const j in allMarkers) {
       const i = parseInt(j)
       const marker = allMarkers[i]
-      const nextMarker = allMarkers[i+1] || false
-      if (nextMarker){
-        new L.SwoopyArrow(swapCoordinates(marker['location'].slice(1,-1).split(",")), swapCoordinates(nextMarker['location'].slice(1,-1).split(",")), {
+      const nextMarker = allMarkers[i + 1] || false
+      if (nextMarker) {
+        new L.SwoopyArrow(swapCoordinates(marker['location'].slice(1, -1).split(",")), swapCoordinates(nextMarker['location'].slice(1, -1).split(",")), {
           text: 'Jag är en testpil',
           color: '#64A7D9',
           weight: "2",
@@ -206,12 +207,12 @@ $(window).on('load', function() {
     for (const i in chapters) {
       const c = chapters[i];
 
-      if(c['markers']){
+      if (c['markers']) {
         for (const marker of c['markers']) {
-          if ( true ) {
-          // if ( !isNaN(parseFloat(marker['location'].split(',')[0])) && !isNaN(parseFloat(marker['location'].split(',')[1]))) {
-            const lat = parseFloat(marker['location'].slice(1,-1).split(",")[1]);
-            const lon = parseFloat(marker['location'].slice(1,-1).split(",")[0]);
+          if (true) {
+            // if ( !isNaN(parseFloat(marker['location'].split(',')[0])) && !isNaN(parseFloat(marker['location'].split(',')[1]))) {
+            const lat = parseFloat(marker['location'].slice(1, -1).split(",")[1]);
+            const lon = parseFloat(marker['location'].slice(1, -1).split(",")[0]);
 
             chapterCount += 1;
 
@@ -226,14 +227,14 @@ $(window).on('load', function() {
                 opacity: marker['style'] === 'Hidden' ? 0 : 0.9,
                 interactive: marker['style'] === 'Hidden' ? false : true,
               }
-            ));
+              ));
           }
         }
       }
 
       // Add chapter container
       var container = $('<div></div>', {
-        id: 'container' + i,
+        id: `container${i}`,
         class: 'chapter-container'
       });
 
@@ -288,21 +289,21 @@ $(window).on('load', function() {
       var mediaType = mediaTypes[mediaExt];
 
       if (mediaType) {
-        media = $('<' + mediaType + '>', {
+        media = $(`<${mediaType}>`, {
           src: c['media_link'],
           controls: mediaType == 'audio' ? 'controls' : '',
         });
 
         mediaContainer = $('<div></div', {
-          class: mediaType + '-container'
+          class: `${mediaType}-container`
         }).append(media).after(source);
       }
 
       container
-        .append('<p class="chapter-header">' + c['title'] + '</p>')
+        .append(`<p class="chapter-header">${c['title']}</p>`)
         .append(media ? mediaContainer : '')
         .append(media ? source : '')
-        .append('<div class="description">' + c['description'] + '</div>');
+        .append(`<div class="description">${c['description']}</div>`);
 
       $('#contents').append(container);
 
@@ -314,19 +315,19 @@ $(window).on('load', function() {
     let imgContainerHeight = parseInt(getSetting('_imgContainerHeight'));
     if (imgContainerHeight > 0) {
       $('.img-container').css({
-        'height': imgContainerHeight + 'px',
-        'max-height': imgContainerHeight + 'px',
+        'height': `${imgContainerHeight}px`,
+        'max-height': `${imgContainerHeight}px`,
       });
     }
 
     // For each block (chapter), calculate how many pixels above it
     pixelsAbove[0] = -100;
     for (let i = 1; i < chapters.length; i++) {
-      pixelsAbove[i] = pixelsAbove[i-1] + $('div#container' + (i-1)).height() + chapterContainerMargin;
+      pixelsAbove[i] = pixelsAbove[i - 1] + $(`div#container${(i - 1)}`).height() + chapterContainerMargin;
     }
     pixelsAbove.push(Number.MAX_VALUE);
 
-    $('div#contents').on("scroll", function() {
+    $('div#contents').on("scroll", function () {
       var currentPosition = $(this).scrollTop();
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
       const paddingLeft = vw >= 768 ? $("#narration").width() + 40 : 0
@@ -338,15 +339,15 @@ $(window).on('load', function() {
       }
 
       for (var i = 0; i < pixelsAbove.length - 1; i++) {
-        
-        if ( currentPosition >= pixelsAbove[i]
-          && currentPosition < (pixelsAbove[i+1] - 2 * chapterContainerMargin)
+
+        if (currentPosition >= pixelsAbove[i]
+          && currentPosition < (pixelsAbove[i + 1] - 2 * chapterContainerMargin)
           && currentlyInFocus != i
         ) {
           // Remove styling for the old in-focus chapter and
           // add it to the new active chapter
           $('.chapter-container').removeClass("in-focus").addClass("out-focus");
-          $('div#container' + i).addClass("in-focus").removeClass("out-focus");
+          $(`div#container${i}`).addClass("in-focus").removeClass("out-focus");
 
           currentlyInFocus = i;
           markActiveColor(currentlyInFocus);
@@ -369,9 +370,9 @@ $(window).on('load', function() {
             var url = c['overlay'];
 
             if (url.split('.').pop() == 'geojson') {
-              $.getJSON(url, function(geojson) {
+              $.getJSON(url, function (geojson) {
                 overlay = L.geoJson(geojson, {
-                  style: function(feature) {
+                  style: function (feature) {
                     return {
                       fillColor: feature.properties.COLOR,
                       weight: 1,
@@ -383,7 +384,7 @@ $(window).on('load', function() {
                 }).addTo(map);
               });
             } else {
-              overlay = L.tileLayer(c['overlay'], {opacity: opacity}).addTo(map);
+              overlay = L.tileLayer(c['overlay'], { opacity: opacity }).addTo(map);
             }
 
           } else {
@@ -392,14 +393,14 @@ $(window).on('load', function() {
 
           if (c['geojson_overlay']) {
             const geojsonoverlay_api = `${ROOT_PATH}api/geojson_overlays/`;
-            const overlay_path = geojsonoverlay_api + c['geojson_overlay'] + '/';
-            $.getJSON(overlay_path).done(function(geojson) {
+            const overlay_path = `${geojsonoverlay_api}${c['geojson_overlay']}/`;
+            $.getJSON(overlay_path).done(function (geojson) {
               const geoJsonBounds = L.geoJson(geojson).getBounds()
-              const markerBounds = c['markers'].map( marker => swapCoordinates( marker['location'].slice(1,-1).split(',') ) )
+              const markerBounds = c['markers'].map(marker => swapCoordinates(marker['location'].slice(1, -1).split(',')))
               const bounds = [geoJsonBounds, markerBounds]
               map.flyToBounds(
                 bounds,
-                {paddingTopLeft: [paddingLeft, paddingTop]}
+                { paddingTopLeft: [paddingLeft, paddingTop] }
               );
 
               // Parse properties string into a JS object
@@ -410,13 +411,13 @@ $(window).on('load', function() {
                 var props = {};
                 for (var p in propsArray) {
                   if (propsArray[p].split(':').length === 2) {
-                    props[ propsArray[p].split(':')[0].trim() ] = propsArray[p].split(':')[1].trim();
+                    props[propsArray[p].split(':')[0].trim()] = propsArray[p].split(':')[1].trim();
                   }
                 }
               }
 
               geoJsonOverlay = L.geoJson(geojson, {
-                style: function(feature) {
+                style: function (feature) {
                   return {
                     fillColor: feature.properties.COLOR || props.fillColor || 'white',
                     weight: props.weight || 1,
@@ -429,32 +430,32 @@ $(window).on('load', function() {
             });
           } else if (c['markers'].length > 1) {
             // multiple markers become a bound
-            const bounds = c['markers'].map(marker => swapCoordinates( marker['location'].slice(1,-1).split(',') ) )
+            const bounds = c['markers'].map(marker => swapCoordinates(marker['location'].slice(1, -1).split(',')))
             map.flyToBounds(
               bounds,
-              {paddingTopLeft: [paddingLeft, paddingTop]}
+              { paddingTopLeft: [paddingLeft, paddingTop] }
             );
           } else {
             // Fly to the single marker destination, use zoom level from chapter zoom in JSON
             const zoom = c['zoom'] ? c['zoom'] : CHAPTER_ZOOM;
             const marker = c['markers'][0]
-            const coords =  swapCoordinates( marker['location'].slice(1,-1).split(',') )
+            const coords = swapCoordinates(marker['location'].slice(1, -1).split(','))
             // center map with padding
             const newCoords = map.layerPointToLatLng([
-              map.latLngToLayerPoint(coords)["x"] - paddingLeft/2, 
+              map.latLngToLayerPoint(coords)["x"] - paddingLeft / 2,
               map.latLngToLayerPoint(coords)["y"]
             ]);
 
             map.flyTo(
               newCoords,
               undefined,
-              {duration: 1}
+              { duration: 1 }
             )
 
-            setTimeout(function(){
+            setTimeout(function () {
               smoothZoom(map, zoom, 300, coords)
-              }, 
-              1010); 
+            },
+              1010);
           }
 
           // No need to iterate through the following chapters
@@ -488,7 +489,7 @@ $(window).on('load', function() {
         background-color: " + trySetting('_narrativeActive', '#e5f4eb') + " \
       }\
       #top {\
-        height: "+ $("#title").height() +"px;\
+        height: "+ $("#title").height() + "px;\
       ")
       .appendTo("head");
 
@@ -496,8 +497,8 @@ $(window).on('load', function() {
     const endPixels = parseInt(getSetting('_pixelsAfterFinalChapter'));
     if (endPixels > 100) {
       $('#space-at-the-bottom').css({
-        'height': (endPixels / 2) + 'px',
-        'padding-top': (endPixels / 2) + 'px',
+        'height': `${(endPixels / 2)}px`,
+        'padding-top': `${(endPixels / 2)}px`,
       });
     }
 
@@ -509,19 +510,19 @@ $(window).on('load', function() {
         marker.on('click', function () {
           const pixels = parseInt(this['_pixelsAbove']) + 5;
           $('div#contents').animate({
-            scrollTop: pixels + 'px'
+            scrollTop: `${pixels}px`
           });
         });
         bounds.push(marker.getLatLng());
       }
     }
-    map.fitBounds(bounds );
+    map.fitBounds(bounds);
 
     $('#map, #narration, #title').css('visibility', 'visible');
     $('div.loader').css('visibility', 'hidden');
 
     $('div#container0').addClass("in-focus");
-    $('div#contents').animate({scrollTop: '1px'});
+    $('div#contents').animate({ scrollTop: '1px' });
   }
 
 
@@ -530,25 +531,22 @@ $(window).on('load', function() {
    */
   function changeAttribution() {
     var attributionHTML = $('.leaflet-control-attribution')[0].innerHTML;
-    var credit = 'View <a href="'
-      // Show Google Sheet URL if the variable exists and is not empty, otherwise link to Chapters.json
-      + (typeof googleDocURL !== 'undefined' && googleDocURL ? googleDocURL : `${ROOT_PATH}api/stories/${getSetting('_id')}.json`)
-      + '" target="_blank">data</a>';
-    
+    var credit = `View <a href="${ROOT_PATH}api/stories/${getSetting('_id')}.json" target="_blank">data</a>`;
+
     var name = getSetting('_authorName');
     var url = getSetting('_authorURL');
 
     if (name && url) {
-      if (url.indexOf('@') > 0) { url = 'mailto:' + url; }
-      credit += ' by <a href="' + url + '">' + name + '</a> | ';
+      if (url.indexOf('@') > 0) { url = `mailto:${url}`; }
+      credit += ` by <a href="${url}">${name}</a> | `;
     } else if (name) {
-      credit += ' by ' + name + ' | ';
+      credit += ` by ${name} | `;
     } else {
       credit += ' | ';
     }
 
-    credit += 'View <a href="' + getSetting('_githubRepo') + '">code</a>';
-    if (getSetting('_codeCredit')) credit += ' by ' + getSetting('_codeCredit');
+    credit += `View <a href="${getSetting('_githubRepo')}">code</a>`;
+    if (getSetting('_codeCredit')) credit += `by ${getSetting('_codeCredit')}`;
     credit += ' with ';
     $('.leaflet-control-attribution')[0].innerHTML = credit + attributionHTML;
   }
