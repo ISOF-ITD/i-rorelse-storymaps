@@ -16,6 +16,30 @@ const map = L.map('map', {
   zoomControl: false
 });
 
+const initStoryList = function() {
+  $.getJSON(`${ROOT_PATH}api/stories.json`, function(stories) {
+    $('<div/>', {id: 'title', style: 'visibility: visible; position: relative;'}).append(
+      $('<div/>', {id: 'header'}).append(
+        $('<h1/>', {text: 'I rörelse'}),
+        $('<h2/>', {text: 'Berättelser'})
+      )
+    ).appendTo($('body'));
+
+    $('<div/>', {id: 'story-list'}).appendTo($('body'))
+    let $ul = $('<ul>', {class: 'stories'}).append(
+      stories.map(story => 
+        $('<li/>').append($('<a/>', 
+          {
+            href: (`${ROOT_PATH}${story['title']}`)
+          })
+          .text(story['title']))
+      )
+    );
+    $('#story-list').append($ul)
+    $('div.loader').css('visibility', 'hidden');
+  });
+}
+
 $(window).on('load', function() {
 
   let url = new URL(window.location.href);
@@ -31,28 +55,27 @@ $(window).on('load', function() {
     scrollPosition = $(this).scrollTop();
   });
   
-  $.getJSON(`${ROOT_PATH}api/stories.json`, function(stories) {
-    // trail and replace slashes because django and JS return different kinds of paths,
-    // with and without slash
-    const story = (url['pathname'] + "/")
-                  .replace(stripTrailingSlash(ROOT_PATH), '') // remove root_path, e.g. "/i-rorelse/" --> "/i-rorelse"
-                  .replace(/\//g, ""); //remove all remaining slashes
-    if (!story) {
-    initStoryList(stories)
-      }
-    else {
-      $.getJSON(`${ROOT_PATH}api/stories.json?title=${story}`, function(filtered_stories) {
-          const data = filtered_stories[0]
-          if (data) {
-            initMap(data)
-            } else {
-              initStoryList(stories)
-            }
-      }).fail( function(e) { 
-        initStoryList(stories)
-      })
-    }
-  });
+  // trail and replace slashes because django and JS return different kinds of paths,
+  // with and without slash
+  const story = (url['pathname'] + "/")
+                .replace(stripTrailingSlash(ROOT_PATH), '') // remove root_path, e.g. "/i-rorelse/" --> "/i-rorelse"
+                .replace(/\//g, ""); //remove all remaining slashes
+  if (!story) {
+    initStoryList()
+  }
+  else {
+    $.getJSON(`${ROOT_PATH}api/stories.json?title=${story}`, function(filtered_stories) {
+        const data = filtered_stories[0]
+        if (data) {
+          initMap(data)
+          } else {
+            initStoryList()
+          }
+    }).fail( function(e) { 
+      initStoryList()
+    })
+  }
+ 
 
   /**
   * Reformulates documentSettings as a dictionary, e.g.
@@ -91,28 +114,6 @@ $(window).on('load', function() {
     L.tileLayer.provider(basemap, {
       maxZoom: 18
     }).addTo(map);
-  }
-
-  function initStoryList(stories) {
-    $('<div/>', {id: 'title', style: 'visibility: visible; position: relative;'}).append(
-      $('<div/>', {id: 'header'}).append(
-        $('<h1/>', {text: 'I rörelse'}),
-        $('<h2/>', {text: 'Berättelser'})
-      )
-    ).appendTo($('body'));
-
-    $('<div/>', {id: 'story-list'}).appendTo($('body'))
-    let $ul = $('<ul>', {class: 'stories'}).append(
-      stories.map(story => 
-        $('<li/>').append($('<a/>', 
-          {
-            href: (`${ROOT_PATH}${story['title']}`)
-          })
-          .text(story['title']))
-      )
-    );
-    $('#story-list').append($ul)
-    $('div.loader').css('visibility', 'hidden');
   }
 
   function initMap(data) {
