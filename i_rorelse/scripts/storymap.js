@@ -6,7 +6,7 @@ import './leaflet-providers';
 import 'leaflet-extra-markers';
 import 'leaflet-swoopy';
 import 'jqueryrouter';
-import { swapCoordinates, smoothZoom } from './helpers';
+import { swapCoordinates, smoothZoom, stripTrailingSlash } from './helpers';
 
 // Create the Leaflet map with a generic start point
 const map = L.map('map', {
@@ -32,8 +32,11 @@ $(window).on('load', function() {
   });
   
   $.getJSON(`${ROOT_PATH}api/stories.json`, function(stories) {
-    const story = url['pathname'].replace(ROOT_PATH, '')
-
+    // trail and replace slashes because django and JS return different kinds of paths,
+    // with and without slash
+    const story = (url['pathname'] + "/")
+                  .replace(stripTrailingSlash(ROOT_PATH), '') // remove root_path, e.g. "/i-rorelse/" --> "/i-rorelse"
+                  .replace(/\//g, ""); //remove all remaining slashes
     if (!story) {
     initStoryList(stories)
       }
