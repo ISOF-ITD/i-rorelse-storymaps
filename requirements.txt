@@ -3,7 +3,7 @@ mysqlclient==1.4.6
 #ExtendedModelAdminMixin:
 django_baker==0.22
 #ImageField:
-Pillow==5.1.0
+Pillow==7.1.0
 #Web:
 requests==2.18.4
 django-cors-headers==2.1.0
