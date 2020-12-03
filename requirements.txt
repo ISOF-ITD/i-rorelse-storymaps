@@ -5,7 +5,7 @@ django_baker==0.22
 #ImageField:
 Pillow==5.1.0
 #Web:
-requests==2.18.4
+requests==2.20.0
 django-cors-headers==2.1.0
 #Excel:
 pandas==1.0.1
